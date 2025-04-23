@@ -1,0 +1,160 @@
+.appContainer {
+  max-width: 1500px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.heroSection {
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 0px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.appTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.appIcon {
+  margin-right: 15px;
+  font-size: 2.5rem;
+}
+
+.appDescription {
+  color: #7f8c8d;
+  font-size: 1.2rem;
+}
+
+.contentContainer {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card {
+  width: 100%;
+}
+
+.iframeContainer {
+  position: relative;
+  width: 100%;
+  padding-bottom: 75%; /* 4:3 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.iframeContainer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Loading Spinner Styles */
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 10;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #1f8077;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loadingText {
+  margin-top: 15px;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1600px) {
+  .appContainer {
+    max-width: 95%;
+    padding: 15px;
+  }
+
+  .heroSection {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .appTitle {
+    font-size: 2.2rem;
+  }
+
+  .appDescription {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .appContainer {
+    padding: 10px;
+  }
+
+  .heroSection {
+    padding: 15px;
+    margin-top: 20px;
+  }
+
+  .appTitle {
+    font-size: 2rem;
+  }
+
+  .appDescription {
+    font-size: 1rem;
+  }
+
+  .iframeContainer {
+    padding-bottom: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .appTitle {
+    font-size: 1.8rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .appIcon {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .appDescription {
+    font-size: 0.9rem;
+  }
+}

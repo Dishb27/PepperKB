@@ -1,0 +1,144 @@
+/* Footer.module.css */
+.footer {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  padding: 4rem 0 2rem;
+  width: 100%;
+}
+
+.footerContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footerContent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footerSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.footerTitle {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.footerTitle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.5rem;
+  width: 2rem;
+  height: 2px;
+  background-color: #4ae2b4;
+}
+
+.footerLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLinks li {
+  margin-bottom: 0.75rem;
+}
+
+.footerLinks a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.footerLinks a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #4ae2a0;
+  transition: width 0.3s ease;
+}
+
+.footerLinks a:hover {
+  color: #4ae2b7;
+}
+
+.footerLinks a:hover::after {
+  width: 100%;
+}
+
+.footerBottom {
+  padding-top: 2rem;
+  border-top: 1px solid #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.footerLogo img {
+  height: 48px;
+  width: auto;
+}
+
+.footerInfo {
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.footerInfo p:first-child {
+  margin-bottom: 0.5rem;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .footerContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footerLogo {
+    margin-bottom: 1rem;
+  }
+
+  .footerInfo {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 3rem 0 1.5rem;
+  }
+
+  .footerContainer {
+    padding: 0 1rem;
+  }
+
+  .footerTitle {
+    font-size: 1.1rem;
+  }
+
+  .footerLinks a {
+    font-size: 0.9rem;
+  }
+}

@@ -1,0 +1,24 @@
+.visualization {
+  margin: 20px auto;
+  display: block;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+/* Tooltip styling */
+.tooltip {
+  fill: white;
+  stroke: #ccc;
+  stroke-width: 1px;
+  rx: 8;
+  ry: 8;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip-text {
+  font-size: 12px;
+  font-weight: bold;
+  fill: black;
+  text-anchor: middle;
+}

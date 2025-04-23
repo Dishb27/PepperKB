@@ -1,0 +1,390 @@
+.container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 15px;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  background: linear-gradient(165deg, #ffffff, #f9fafb);
+}
+
+.title {
+  color: #065551;
+  font-size: 36px;
+  margin-top: 5rem;
+  margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #4a5352;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 0.01em;
+  opacity: 0.9;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  margin: 1rem auto 0;
+  border-radius: 3px;
+  background-size: 200% auto;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.formCard {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  backdrop-filter: blur(20px);
+  margin-bottom: 2rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.textarea {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  resize: vertical;
+  min-height: 120px;
+  max-height: 300px;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.95);
+  font-family: "JetBrains Mono", monospace;
+}
+
+.textarea:focus {
+  border-color: #3bf6b2;
+  box-shadow: 0 0 0 4px rgba(59, 246, 178, 0.15);
+  outline: none;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.submitBtn,
+.clearBtn,
+.exampleBtn {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.submitBtn {
+  background: linear-gradient(135deg, #028179, #065551);
+  color: white;
+  box-shadow: 0 4px 15px rgba(2, 129, 121, 0.2);
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(2, 129, 121, 0.3);
+}
+
+.clearBtn {
+  background: linear-gradient(135deg, #f87171, #ef4444);
+  color: white;
+}
+
+.exampleBtn {
+  background: linear-gradient(135deg, #5a5b5b, #1c6a60);
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.results {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Improved Gene Card styles */
+.geneCard {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 0;
+}
+
+.geneCard:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+.geneTitle {
+  font-size: 1.25rem;
+  color: rgb(0, 0, 0);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(90deg, #cbdbd3, #cdd2d1);
+  margin: 0;
+  padding: 1rem 1.5rem;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.geneTitle::before {
+  content: "🧬";
+  font-size: 1.2em;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  animation: spinDNA 3s ease-in-out infinite;
+}
+
+@keyframes spinDNA {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.geneInfoCard {
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #f8fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.subHeading {
+  font-size: 1rem;
+  color: #4a5352;
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+  flex: 1 0 48%;
+  min-width: 200px;
+}
+
+.boldText {
+  font-weight: 700;
+  color: #065551;
+}
+
+.geneContent {
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 0 0 15px 15px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.geneContent .subHeading {
+  margin-bottom: 1rem;
+  color: #065551;
+  border-bottom: 1px dashed #e5e7eb;
+  padding-bottom: 0.5rem;
+  width: 100%;
+}
+
+.geneStructureContainer {
+  margin-top: 0.5rem;
+  background: #fafafa;
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid #f0f0f0;
+}
+
+/* Legend styles */
+.customLegend,
+.defaultLegendContainer {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+  background-color: #f5f9f9;
+  padding: 10px 15px;
+  border-radius: 8px;
+  justify-content: center;
+  border: 1px solid #e5e7eb;
+}
+
+.customLegendRect,
+.defaultLegendRect {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.customLegendText,
+.defaultLegendText {
+  font-size: 14px;
+  color: #4a5352;
+  font-weight: 500;
+}
+
+.defaultLegend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.error,
+.warning {
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: slideIn 0.3s ease;
+}
+
+.error {
+  background: linear-gradient(135deg, #fef2f2, #fee2e2);
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.warning {
+  background: linear-gradient(135deg, #fef9c3, #fef08a);
+  color: #b45309;
+  border: 1px solid #fef08a;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 10px;
+    margin: 15px auto;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .formCard {
+    padding: 1.25rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .submitBtn,
+  .clearBtn,
+  .exampleBtn {
+    width: 100%;
+  }
+
+  .results {
+    grid-template-columns: 1fr;
+  }
+
+  .geneInfoCard {
+    flex-direction: column;
+  }
+
+  .subHeading {
+    flex: 1 0 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title::after,
+  .geneCard::before {
+    animation: none;
+  }
+}
+
+/* Additional styles for PepperGO */
+.goCategory {
+  margin-bottom: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.goTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.goTable th,
+.goTable td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.goTable th {
+  background-color: #f2f2f2;
+  font-weight: 600;
+}
+
+.goId {
+  color: #137369;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.goId:hover {
+  text-decoration: underline;
+}
+
+.noData {
+  padding: 1rem;
+  color: #666;
+  font-style: italic;
+  text-align: center;
+}

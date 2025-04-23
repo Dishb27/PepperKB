@@ -1,0 +1,625 @@
+/* summary.module.css */
+.container {
+  font-family: "Inter", sans-serif;
+  padding: 20px;
+  max-width: 1300px;
+  margin: 80px auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.container:hover {
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+}
+
+.geneIDSection {
+  text-align: center;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, #08554a, #1da591);
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.geneIDSection:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+}
+
+.geneIDSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.geneIDSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: 800;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.geneIDSection h2:hover {
+  color: #afffcb;
+  transform: translateY(-5px);
+}
+
+.geneIDSection h2:before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #75ffd6;
+  margin: 0 auto 15px;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
+.geneIDSection h2:hover:before {
+  width: 80px;
+}
+
+.geneIDSection p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  font-weight: 300;
+  margin: 0;
+  transition: opacity 0.3s ease;
+}
+
+.geneIDSection:hover p {
+  opacity: 1;
+}
+
+.tabbedInterface {
+  margin-top: 40px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.tabbedInterface:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 15px 20px 0;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.tabs button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  color: #495057;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  position: relative;
+}
+
+.tabs button:hover {
+  background: rgba(46, 255, 178, 0.1);
+  color: #207f62;
+}
+
+.tabs button::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #41d094;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.tabs button:hover::after {
+  transform: scaleX(1);
+}
+
+.activeTab {
+  background: #6d7473 !important;
+  color: white !important;
+}
+
+.activeTab::after {
+  transform: scaleX(1);
+}
+
+.tabContent {
+  padding: 30px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.tabContent ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.tabContent ul li {
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  padding: 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tabContent ul li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(65, 88, 208, 0.2);
+  border-color: rgba(65, 88, 208, 0.3);
+}
+
+.tabContent ul li strong {
+  display: block;
+  color: #6c757d;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.para {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
+}
+.exploreButton {
+  background: linear-gradient(135deg, #2e5b51, #697673);
+  color: white;
+  border: none;
+  padding: 10px 17px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(65, 88, 208, 0.2);
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+.exploreButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(65, 88, 208, 0.3);
+  background: linear-gradient(135deg, #1da591, #08554a);
+}
+
+.exploreButton:active {
+  transform: translateY(0);
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+  font-size: 2.5rem;
+  color: #125e4b;
+}
+
+.error {
+  color: #dc3545;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  background: #fff5f5;
+  border-radius: 8px;
+  border: 1px solid #dc3545;
+}
+
+.errorIcon {
+  font-size: 1.5rem;
+}
+
+.cardList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  padding: 20px;
+  border-radius: 16px;
+  border: 2px solid #8bffcb;
+  outline: 4px solid rgba(139, 255, 203, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(65, 88, 208, 0.2);
+  border-color: rgba(65, 88, 208, 0.3);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cardContent strong {
+  color: #6c757d;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.cardContent span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #08554a;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .tabs {
+    flex-wrap: wrap;
+  }
+
+  .tabs button {
+    flex: 1 1 calc(50% - 10px);
+    justify-content: center;
+  }
+
+  .geneIDSection h2 {
+    font-size: 2rem;
+  }
+
+  .tabContent ul {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    margin: 20px auto;
+  }
+}
+
+/* Container for the table with scroll on small screens */
+.tableContainer {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+/* Styled table */
+.goTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+/* Table header */
+.goTable thead {
+  background-color: #474848;
+  color: white;
+}
+
+.goTable th {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Table body */
+.goTable td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Alternating row colors */
+.goTable tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Hover effect */
+.goTable tbody tr:hover {
+  background-color: #e6fff3;
+}
+
+/* Specific styling for Type (Function, Process, Component) */
+.goTable .F {
+  color: #ff5722;
+  font-weight: bold;
+}
+
+.goTable .P {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.goTable .C {
+  color: #2196f3;
+  font-weight: bold;
+}
+
+/* No data message */
+.noData {
+  font-style: italic;
+  color: #ff0000;
+  margin-top: 10px;
+}
+
+/* Legend for GO Types */
+.legend {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.legend p {
+  margin: 0 0 10px 0;
+  font-weight: 600;
+  color: #08554a;
+}
+
+.legend ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.legend ul li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+.legend ul li span {
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Colors for GO Types */
+.F {
+  color: #ff5722; /* Orange for Molecular Function */
+}
+
+.P {
+  color: #4caf50; /* Green for Biological Process */
+}
+
+.C {
+  color: #2196f3; /* Blue for Cellular Component */
+}
+
+/* .sequenceContainer {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.sequence {
+  font-family: "Courier New", monospace;
+  background: #fff;
+  padding: 8px;
+  border-radius: 5px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+} */
+
+/* Enhanced sequence container styling */
+.sequenceContainer {
+  margin: 24px 0;
+  padding: 24px;
+  background: linear-gradient(145deg, #f6f7f9, #ffffff);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(8, 85, 74, 0.1);
+  transition: all 0.3s ease;
+}
+
+.sequenceContainer:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(8, 85, 74, 0.12);
+}
+
+.sequenceContainer h3 {
+  color: #08554a;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(8, 85, 74, 0.1);
+  position: relative;
+}
+
+.sequenceContainer h3::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #08554a, #1da591);
+  transition: width 0.3s ease;
+}
+
+.sequenceContainer:hover h3::after {
+  width: 100px;
+}
+
+/* Modern sequence text styling */
+.sequence {
+  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  background: #f8f9fc;
+  color: #2a2f45;
+  padding: 20px;
+  border-radius: 12px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border: 1px solid rgba(8, 85, 74, 0.08);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.sequence:hover {
+  background: #ffffff;
+  border-color: rgba(8, 85, 74, 0.15);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+/* Custom scrollbar for sequence */
+.sequence::-webkit-scrollbar {
+  height: 8px;
+  background-color: #f8f9fc;
+}
+
+.sequence::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #08554a, #1da591);
+  border-radius: 4px;
+}
+
+.sequence::-webkit-scrollbar-track {
+  background: rgba(8, 85, 74, 0.05);
+  border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sequenceContainer {
+    padding: 16px;
+    margin: 16px 0;
+  }
+
+  .sequence {
+    font-size: 0.85rem;
+    padding: 16px;
+  }
+}
+
+.sequence-wrapper {
+  position: relative;
+}
+
+.copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(8, 85, 74, 0.1);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: #08554a;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.sequence-wrapper:hover .copy-button {
+  opacity: 1;
+}
+
+.copy-button:hover {
+  background: rgba(8, 85, 74, 0.2);
+}

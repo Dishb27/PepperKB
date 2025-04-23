@@ -1,0 +1,279 @@
+/* General Styles */
+.sectionWrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.sectionHeader h2 {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+/* Hero Section */
+.heroSection {
+  background: linear-gradient(
+    to bottom,
+    var(--secondary-bg),
+    var(--primary-bg)
+  );
+  padding: 6rem 0;
+  overflow: hidden;
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: rgba(22, 163, 74, 0.1);
+  color: var(--accent-color);
+  border-radius: 2rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+.heroTitle {
+  font-size: 4rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.accentText {
+  color: var(--accent-color);
+}
+
+.scientificName {
+  font-style: italic;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+.heroDescription {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.heroDivider {
+  height: 4px;
+  width: 60px;
+  background-color: var(--accent-color);
+  margin: 3rem auto 0;
+  border-radius: 2px;
+}
+
+/* Feature Section */
+.featureSection {
+  padding: 6rem 0;
+  background-color: var(--primary-bg);
+}
+
+.headerLine {
+  width: 60px;
+  height: 4px;
+  background-color: var(--accent-color);
+  margin: 1.5rem auto 0;
+  border-radius: 2px;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.featureCard {
+  padding: 2rem;
+  background: var(--primary-bg);
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.featureIcon {
+  color: var(--accentColor);
+  margin-bottom: 1.5rem;
+}
+
+.featureContent h3 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.featureContent p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Map Section */
+.mapSection {
+  padding: 6rem 0;
+  background-color: var(--secondary-bg);
+}
+
+.mapContainer {
+  background: var(--primary-bg);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.mapHeader {
+  padding: 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mapDescription {
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+.mapFrame {
+  position: relative;
+  height: 600px;
+}
+
+.mapIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Tools Section */
+.toolsSection {
+  padding: 6rem 0;
+  background-color: var(--primary-bg);
+}
+
+.toolsIntro {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.toolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.toolCard {
+  background: var(--primary-bg);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.toolCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.toolImageContainer {
+  position: relative;
+  padding-top: 75%;
+}
+
+.toolImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.toolOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.1));
+}
+
+.toolInfo {
+  padding: 1.5rem;
+}
+
+.toolInfo h3 {
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+.toolInfo p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.toolLink {
+  color: var(--accent-color);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 3rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.25rem;
+  }
+
+  .sectionHeader h2 {
+    font-size: 2rem;
+  }
+
+  .mapFrame {
+    height: 400px;
+  }
+
+  .featureGrid,
+  .toolsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionWrapper {
+    padding: 0 1rem;
+  }
+
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+}
