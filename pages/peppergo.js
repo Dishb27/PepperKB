@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import styles from "../styles/go.module.css"; 
+import styles from "../styles/go.module.css";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -163,7 +163,9 @@ const PepperGOPage = () => {
             GO-Pep
           </h1>
           <p className={styles.appDescription}>
-            Explore Gene Ontology (GO) annotations for pepper genes
+            Explore Gene Ontology (GO) annotations for black pepper genes to
+            gain insights into their molecular functions, biological processes,
+            and cellular locations.
           </p>
         </div>
 
@@ -200,7 +202,7 @@ const PepperGOPage = () => {
           {activeTab === "input" && (
             <div className={styles.card}>
               <div className={styles.cardHeader}>
-                <h2>Search Gene Ontology</h2>
+                <h2>Search GO Terms</h2>
                 <button
                   onClick={handleExample}
                   className={styles.exampleButton}
@@ -212,8 +214,8 @@ const PepperGOPage = () => {
               <div className={styles.infoBox}>
                 <i className="fas fa-info-circle"></i>
                 <span>
-                  Enter up to {MAX_GENES} gene IDs to explore their GO
-                  annotations
+                  Enter up to {MAX_GENES} gene IDs to explore their associated
+                  GO annotations.
                 </span>
               </div>
 
@@ -304,13 +306,17 @@ const PepperGOPage = () => {
           {activeTab === "results" && (
             <div className={styles.resultsPanel}>
               <div className={styles.resultsPanelHeader}>
-                <h2>Gene Ontology Annotations</h2>
+                <h2>GO Annotations</h2>
                 <button
                   className={styles.backButton}
                   onClick={() => setActiveTab("input")}
                 >
-                  <i className="fas fa-arrow-left"></i> Back to Search
+                  <i className="fas fa-arrow-left"></i> Return to Search
                 </button>
+              </div>
+              <div className={styles.infoBox}>
+                <i className="fas fa-info-circle"></i>
+                <span>View the GO annotations for the selected genes</span>
               </div>
 
               {goAnnotations.length > 0 ? (
