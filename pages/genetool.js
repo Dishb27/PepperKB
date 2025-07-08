@@ -112,10 +112,6 @@ const GeneToolPage = () => {
     setGeneIds("Pn1.2085, Pn1.102, Pn10.1094, Pn11.2697, Pn15.2213");
   };
 
-  // const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  // const toggleDropdown = (index) =>
-  //   setOpenDropdown(openDropdown === index ? null : index);
-
   // Customize styles for gene structure
   const exonStyles = {
     fillColor: "#137369", // Custom color for exon
@@ -141,8 +137,8 @@ const GeneToolPage = () => {
       <div className={styles.container}>
         <h1 className={styles.title}>GeneViz</h1>
         <p className={styles.subtitle}>
-          Visualize the structure of your gene of interest with ease. Input
-          GeneIDs to generate detailed exon-intron maps.
+          Visualize the structure of your gene(s) of interest. Input Gene IDs to
+          generate detailed exon-intron structures.
         </p>
 
         <div className={styles.formCard}>
@@ -158,7 +154,7 @@ const GeneToolPage = () => {
             <textarea
               value={geneIds}
               onChange={(e) => setGeneIds(e.target.value)}
-              placeholder={`Enter up to ${MAX_GENES} GeneIDs, separated by commas or new lines`}
+              placeholder={`Enter up to ${MAX_GENES} gene IDs, separated by commas or new lines.`}
               rows={5}
               className={styles.textarea}
             />
