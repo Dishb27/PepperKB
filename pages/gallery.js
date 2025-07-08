@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -13,52 +12,45 @@ const GalleryPage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showCollection, setShowCollection] = useState(false);
+  const [imageErrors, setImageErrors] = useState({});
 
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1000); // Simulate loading for smoother transition
+    setTimeout(() => setIsLoading(false), 1000);
   }, []);
+
+  // Handle image loading errors
+  const handleImageError = (src) => {
+    setImageErrors((prev) => ({
+      ...prev,
+      [src]: true,
+    }));
+  };
 
   const featuredImages = [
     {
-      src: "/images/front2.jpg",
-      title: "",
-      description: "",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/front2_ogakzq.jpg",
       featured: true,
     },
     {
-      src: "/images/front1.jpg",
-      title: "",
-      description: "",
-      featured: true,
-    },
-    // {
-    //   src: "/images/front5.jpg",
-    //   title: "",
-    //   description: "",
-    //   featured: true,
-    // },
-    {
-      src: "/images/front3.jpg",
-      title: "",
-      description: "",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/front1_bzy4ae.jpg",
       featured: true,
     },
     {
-      src: "/images/front4.jpg",
-      title: "",
-      description: "",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/front3_opisx1.jpg",
+      featured: true,
+    },
+    {
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/front4_zxpchx.jpg",
       featured: true,
     },
   ];
 
   const galleryImages = [
     {
-      src: "/images/dingirala.jpg",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/dingirala_hfz23s.jpg",
       title: "DingiRala Variety",
-      description: "",
       size: "large",
       details: {
-        title: "DingiRala - New Black Pepper Hybrid",
         parentage: "Parentage: Panniyut-1 X GK 49",
         spikeLength: "Spike length: 12 cm",
         fillingPercent: "Filling %: 80",
@@ -72,12 +64,10 @@ const GalleryPage = () => {
       },
     },
     {
-      src: "/images/bootaawe.jpg",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/bootaawe_jlujoi.jpg",
       title: "BootaweRala Variety",
-      description: "",
       size: "medium",
       details: {
-        title: "BootaweRala - New Black Pepper Hybrid",
         parentage: "Parentage: Panniyut-1 X DM-7",
         spikeLength: "Spike length: 14 cm",
         fillingPercent: "Filling %: 80",
@@ -91,12 +81,10 @@ const GalleryPage = () => {
       },
     },
     {
-      src: "/images/kohu.jpg",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/kohu_zztlvn.jpg",
       title: "KohukumbureRala Variety",
-      description: "",
       size: "large",
       details: {
-        title: "KohukumbureRala - New Black Pepper Hybrid",
         parentage: "Parentage: MW-21 X Panniyut-1",
         spikeLength: "Spike length: 12 cm",
         fillingPercent: "Filling %: 80",
@@ -110,63 +98,45 @@ const GalleryPage = () => {
       },
     },
     {
-      src: "/images/fruit1.jpg",
-      title: "",
-      description: "",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/fruit1_amc5gq.jpg",
       size: "medium",
     },
     {
-      src: "/images/fruit2.jpg",
-      title: "",
-      description: "",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/fruit2_h8cflc.jpg",
       size: "medium",
     },
     {
-      src: "/images/leaf.jpg",
-      title: "",
-      description: "",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/leaf_oxbxw4.jpg",
       size: "medium",
     },
     {
-      src: "/images/flower.jpg",
-      title: "",
-      description: "",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/flower_hhqcoo.jpg",
       size: "medium",
     },
     {
-      src: "/images/fruit4.jpg",
-      title: "",
-      description: "",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/fruit4_iar60w.jpg",
       size: "medium",
     },
     {
-      src: "/images/flower2.jpg",
-      title: "",
-      description: "",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/flower2_m1hv97.jpg",
       size: "medium",
     },
     {
-      src: "/images/fruit5.jpg",
-      title: "",
-      description: "",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/fruit5_qzoeuh.jpg",
       size: "medium",
     },
     {
-      src: "/images/plant.jpg",
-      title: "",
-      description: "",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/plant_ngb1rc.jpg",
       size: "medium",
     },
     {
-      src: "/images/fruit6.jpg",
-      title: "",
-      description: "",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/fruit6_veq2hf.jpg",
       size: "medium",
     },
   ];
 
   const sliderSettings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 1000,
     slidesToShow: 1,
@@ -174,7 +144,8 @@ const GalleryPage = () => {
     autoplay: true,
     autoplaySpeed: 5000,
     fade: true,
-    pauseOnHover: false,
+    pauseOnHover: true,
+    arrows: true,
   };
 
   useEffect(() => {
@@ -200,8 +171,8 @@ const GalleryPage = () => {
   };
 
   const handleImageClick = (image) => {
-    console.log("Image clicked:", image); // Debugging line
-    setSelectedImage(image); // Set selected image with details
+    console.log("Image clicked:", image);
+    setSelectedImage(image);
   };
 
   return (
@@ -214,10 +185,8 @@ const GalleryPage = () => {
         />
       </Head>
 
-      {/* Header with Navigation */}
       <Header />
 
-      {/* Gallery Page Content */}
       <div className={styles.container}>
         {isLoading && (
           <div className={styles.loader}>
@@ -230,14 +199,19 @@ const GalleryPage = () => {
             <Slider {...sliderSettings}>
               {featuredImages.map((image, index) => (
                 <div key={index} className={styles.heroSlide}>
-                  <Image
-                    src={image.src}
-                    alt={image.title}
-                    layout="fill"
-                    objectFit="cover"
-                    priority
-                    className={styles.heroImage}
-                  />
+                  <div className={styles.imageContainer}>
+                    <img
+                      src={image.src}
+                      alt={image.title}
+                      className={styles.heroImage}
+                      onError={() => handleImageError(image.src)}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
                   <div className={styles.heroContent}>
                     <h1>{image.title}</h1>
                     <p>{image.description}</p>
@@ -247,6 +221,7 @@ const GalleryPage = () => {
                         setShowCollection(true);
                         scrollToGallery();
                       }}
+                      aria-label="Explore image collection"
                     >
                       <Camera className={styles.buttonIcon} />
                       Explore Collection
@@ -257,7 +232,6 @@ const GalleryPage = () => {
             </Slider>
           </section>
 
-          {/* Conditionally rendered gallery section */}
           {showCollection && (
             <section id="collection" className={styles.gallerySection}>
               <div className={styles.sectionHeader}>
@@ -269,19 +243,40 @@ const GalleryPage = () => {
                   <div
                     key={index}
                     className={`${styles.masonryItem} ${styles[image.size]}`}
-                    onClick={() => handleImageClick(image)} // Handle image click
+                    onClick={() => handleImageClick(image)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        handleImageClick(image);
+                      }
+                    }}
+                    aria-label={`View details for ${image.title}`}
                   >
                     <div className={styles.imageWrapper}>
-                      <Image
-                        src={image.src}
-                        alt={image.title}
-                        layout="fill"
-                        objectFit="cover"
-                        className={styles.masonryImage}
-                      />
+                      {!imageErrors[image.src] ? (
+                        <img
+                          src={image.src}
+                          alt={image.title}
+                          className={styles.masonryImage}
+                          onError={() => handleImageError(image.src)}
+                          loading="lazy"
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      ) : (
+                        <div className={styles.imagePlaceholder}>
+                          <Camera size={48} />
+                          <p>Image unavailable</p>
+                        </div>
+                      )}
                       <div className={styles.imageOverlay}>
                         <div className={styles.overlayContent}>
                           <h4>{image.title}</h4>
+                          <p>{image.description}</p>
                           <div className={styles.overlayIcons}>
                             <ZoomIn className={styles.icon} />
                           </div>
@@ -294,14 +289,15 @@ const GalleryPage = () => {
             </section>
           )}
 
-          {/* Lightbox for selected image - Different layouts based on whether image has details */}
           {selectedImage && (
             <div
               className={styles.lightbox}
               onClick={() => setSelectedImage(null)}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="lightbox-title"
             >
               {selectedImage.details ? (
-                // Split view for images with details
                 <div
                   className={styles.lightboxContent}
                   onClick={(e) => e.stopPropagation()}
@@ -309,45 +305,67 @@ const GalleryPage = () => {
                   <button
                     className={styles.closeButton}
                     onClick={() => setSelectedImage(null)}
+                    aria-label="Close lightbox"
                   >
                     <X />
                   </button>
                   <div className={styles.lightboxImage}>
-                    <Image
+                    <img
                       src={selectedImage.src}
                       alt={selectedImage.title}
-                      layout="fill"
-                      objectFit="contain"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                      }}
                     />
                   </div>
                   <div className={styles.lightboxInfo}>
                     <div className={styles.lightboxHeader}>
-                      <h3>{selectedImage.title}</h3>
+                      <h3 id="lightbox-title">{selectedImage.title}</h3>
                     </div>
-                    <p className={styles.lightboxDescription}>
+                    {/* <p className={styles.lightboxDescription}>
                       {selectedImage.description}
-                    </p>
+                    </p> */}
 
-                    {/* Show details for selected image */}
                     <div className={styles.detailedInfo}>
-                      <p>
+                      {/* <div className={styles.detailItem}>
                         <strong>{selectedImage.details.title}</strong>
-                      </p>
-                      <p>{selectedImage.details.parentage}</p>
-                      <p>{selectedImage.details.spikeLength}</p>
-                      <p>{selectedImage.details.fillingPercent}</p>
-                      <p>{selectedImage.details.yield}</p>
-                      <p>{selectedImage.details.conversionRatio}</p>
-                      <p>{selectedImage.details.oleoresinContent}</p>
-                      <p>{selectedImage.details.oilContent}</p>
-                      <p>{selectedImage.details.piperinContent}</p>
-                      <p>{selectedImage.details.bulkDensity}</p>
-                      <p>{selectedImage.details.seedWeight}</p>
+                      </div> */}
+                      <div className={styles.detailItem}>
+                        {selectedImage.details.parentage}
+                      </div>
+                      <div className={styles.detailItem}>
+                        {selectedImage.details.spikeLength}
+                      </div>
+                      <div className={styles.detailItem}>
+                        {selectedImage.details.fillingPercent}
+                      </div>
+                      <div className={styles.detailItem}>
+                        {selectedImage.details.yield}
+                      </div>
+                      <div className={styles.detailItem}>
+                        {selectedImage.details.conversionRatio}
+                      </div>
+                      <div className={styles.detailItem}>
+                        {selectedImage.details.oleoresinContent}
+                      </div>
+                      <div className={styles.detailItem}>
+                        {selectedImage.details.oilContent}
+                      </div>
+                      <div className={styles.detailItem}>
+                        {selectedImage.details.piperinContent}
+                      </div>
+                      <div className={styles.detailItem}>
+                        {selectedImage.details.bulkDensity}
+                      </div>
+                      <div className={styles.detailItem}>
+                        {selectedImage.details.seedWeight}
+                      </div>
                     </div>
                   </div>
                 </div>
               ) : (
-                // Full image view for images without details
                 <div
                   className={styles.lightboxContentFullImage}
                   onClick={(e) => e.stopPropagation()}
@@ -355,18 +373,23 @@ const GalleryPage = () => {
                   <button
                     className={styles.closeButton}
                     onClick={() => setSelectedImage(null)}
+                    aria-label="Close lightbox"
                   >
                     <X />
                   </button>
                   <div className={styles.fullImageContainer}>
-                    <Image
+                    <img
                       src={selectedImage.src}
                       alt={selectedImage.title}
-                      layout="fill"
-                      objectFit="contain"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                      }}
                     />
                     <div className={styles.fullImageLabel}>
-                      <h3>{selectedImage.title}</h3>
+                      <h3 id="lightbox-title">{selectedImage.title}</h3>
+                      <p>{selectedImage.description}</p>
                     </div>
                   </div>
                 </div>
