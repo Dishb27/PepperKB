@@ -68,8 +68,8 @@ const SNPMarkerPage = () => {
               <span className={styles.tagline}>BLACK PEPPER KNOWLEDGEBASE</span>
               <h1>SNP Marker Database</h1>
               <p>
-                Explore our comprehensive collection of Single Nucleotide
-                Polymorphism (SNP) markers from Black Pepper research data.
+                Explore single nucleotide polymorphism (SNP) markers curated
+                from black pepper research data.
               </p>
             </div>
           </div>
