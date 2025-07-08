@@ -62,6 +62,9 @@ const ResultBlast = () => {
                 queryTo: alignment.queryTo || "N/A",
                 hitFrom: alignment.hitFrom || "N/A",
                 hitTo: alignment.hitTo || "N/A",
+                identity: alignment.identity || "N/A",
+                gaps: alignment.gaps || "N/A",
+                bitScore: alignment.bitScore || "N/A",
               })) || [],
           }));
 
@@ -93,17 +96,22 @@ const ResultBlast = () => {
     return program === "blastn" ? "bp" : "aa";
   };
 
+  // Function to calculate identity percentage
+  const calculateIdentityPercentage = (identity, alignLength) => {
+    if (identity === "N/A" || alignLength === "N/A") return "N/A";
+    const identityNum = parseInt(identity);
+    const lengthNum = parseInt(alignLength);
+    if (isNaN(identityNum) || isNaN(lengthNum) || lengthNum === 0) return "N/A";
+    return ((identityNum / lengthNum) * 100).toFixed(1) + "%";
+  };
+
   // Component to display errors or no results messages
   const ResultsMessage = () => {
     if (errorMessage) {
       return (
         <div className={styles.resultsMessage}>
           <div className={styles.alertBox}>
-            <h3>
-              {blastResults && blastResults.length > 0
-                ? "Note:"
-                : "No Results Found"}
-            </h3>
+            <h3>Message:</h3>
             <p>{errorMessage}</p>
 
             {/* Display program-database mismatch errors with helpful suggestions */}
@@ -128,7 +136,8 @@ const ResultBlast = () => {
               <div className={styles.incompatibilityHelp}>
                 <h4>Sequence Type Mismatch:</h4>
                 <p>
-                  The sequence you provided doesn't match the selected program:
+                  The sequence you provided doesn&apos;t match the selected
+                  program:
                 </p>
                 <ul>
                   <li>
@@ -226,10 +235,9 @@ const ResultBlast = () => {
                 />
               </svg>
             </div>
-            <h3>No Results Found</h3>
             <p>
-              No significant matches were found. Try adjusting your search
-              parameters.
+              No significant matches were found for your query. Please check the
+              input sequence or try adjusting search parameters.
             </p>
             <button
               onClick={() => router.push("/blast")}
@@ -289,6 +297,12 @@ const ResultBlast = () => {
                               <span className={styles.rangeLabel}>Length</span>
                               <span className={styles.rangeValue}>
                                 {alignment.alignLength} {getLengthUnit()}
+                              </span>
+                            </div>
+                            <div className={styles.rangeItem}>
+                              <span className={styles.rangeLabel}>Identity</span>
+                              <span className={styles.rangeValue}>
+                                {calculateIdentityPercentage(alignment.identity, alignment.alignLength)}
                               </span>
                             </div>
                           </div>
