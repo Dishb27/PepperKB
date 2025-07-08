@@ -13,8 +13,8 @@ const Manual = () => {
         <div>
           <h2>Homepage Overview</h2>
           <p>
-            The homepage serves as the central hub for the Black Pepper
-            Knowledgebase, providing quick access to all resources and features.
+            The homepage serves as the central hub for the BlackPepKB, providing
+            quick access to all resources and features.
           </p>
 
           <h3>Main Features:</h3>
@@ -24,12 +24,12 @@ const Manual = () => {
               providing access to all major sections.
             </li>
             <li>
-              <strong>Banner Section:</strong> Highlights the platform's purpose
-              as a translational genomics resource.
+              <strong>Banner Section:</strong> Highlights the platform&apos;s
+              purpose as a translational genomics resource.
             </li>
             <li>
               <strong>Introduction:</strong> Overview of PepperKB and its role
-              in consolidating Piper nigrum data.
+              in consolidating <em>Piper nigrum</em> data.
             </li>
             <li>
               <strong>Background Information:</strong> Interactive tab-based
@@ -64,7 +64,7 @@ const Manual = () => {
               other data collections.
             </li>
             <li>
-              <strong>Tools:</strong> Access analytical tools including eFP
+              <strong>Tools:</strong> Access bioinformatics tools including eFP
               Browser, BLAST, and JBrowse.
             </li>
             <li>
@@ -77,18 +77,18 @@ const Manual = () => {
             </li>
           </ul>
           <img
-            src="/images/navigationbar.png"
+            src="https://res.cloudinary.com/dsjtalfn9/image/upload/homepage_qlu2jc.png"
             alt="Top Navigation Bar"
             className={styles.image}
           />
 
           <h3>Quick Navigation</h3>
           <p>
-            The quick links section provides direct access to frequently used
-            tools and resources.
+            The quick links section provides direct access to all tools and
+            resources.
           </p>
           <img
-            src="/images/quicklinks.png"
+            src="https://res.cloudinary.com/dsjtalfn9/image/upload/footer_pfk2yj.png"
             alt="Quick Links"
             className={styles.image}
           />
@@ -100,10 +100,10 @@ const Manual = () => {
             details are organized in a four-tab format showing:
           </p>
           <ul className={styles.manual}>
-            <li>Gene Details (default view)</li>
-            <li>Expression Data</li>
-            <li>Sequence Information</li>
-            <li>Related Publications</li>
+            <li>Gene Details</li>
+            <li>Coding Sequence</li>
+            <li>Protein Sequence</li>
+            <li>Gene Ontology</li>
           </ul>
         </div>
       ),
@@ -112,7 +112,7 @@ const Manual = () => {
       name: "GO-Pep",
       content: (
         <div>
-          <h2>GO-Pep: Gene Ontology Annotation Tool</h2>
+          <h2>GO-Pep: a tool for exploring GO annotations </h2>
           <p>
             GO-Pep facilitates retrieval and exploration of Gene Ontology (GO)
             annotations for black pepper genes, providing systematic
@@ -130,17 +130,17 @@ const Manual = () => {
                   Pn1.10)
                 </li>
                 <li>
-                  Click "Try Example" to populate fields with sample gene IDs
+                  Click &quot;Try Example&quot; to populate fields with sample
+                  gene IDs
                 </li>
-                <li>Use "Clear" to reset all input fields</li>
+                <li>Use &quot;Clear&quot; to reset all input fields</li>
               </ul>
             </li>
             <li>
               <strong>Submit Your Query:</strong>
               <ul>
-                <li>Click the "Submit" button to retrieve annotations</li>
                 <li>
-                  The system validates inputs and prevents empty submissions
+                  Click the &quot;Submit&quot; button to retrieve annotations
                 </li>
               </ul>
             </li>
@@ -193,7 +193,7 @@ const Manual = () => {
             </li>
           </ol>
           <img
-            src="/images/go-pep-interface.png"
+            src="https://res.cloudinary.com/dsjtalfn9/image/upload/pepgo_uc9hgq.png"
             alt="GO-Pep Interface"
             className={styles.image}
           />
@@ -204,11 +204,10 @@ const Manual = () => {
       name: "GeneViz",
       content: (
         <div>
-          <h2>GeneViz: Gene Structure Visualization</h2>
+          <h2>GeneViz: gene structure visualization tool </h2>
           <p>
             GeneViz provides an interactive web interface for visualizing
-            exon-intron structures of black pepper genes, allowing researchers
-            to examine gene architecture in detail.
+            exon-intron structures of black pepper genes.
           </p>
 
           <h3>How to Use:</h3>
@@ -222,7 +221,7 @@ const Manual = () => {
                 </li>
                 <li>You can input up to 5 gene IDs at once</li>
                 <li>
-                  Click "Try an Example" to load sample gene IDs for
+                  Click &quot;Try an Example&quot; to load sample gene IDs for
                   demonstration
                 </li>
               </ul>
@@ -231,11 +230,8 @@ const Manual = () => {
               <strong>Generate Visualizations:</strong>
               <ul>
                 <li>
-                  Click "Submit" to query the database and generate gene
-                  structures
-                </li>
-                <li>
-                  The system validates inputs and prevents empty submissions
+                  Click &quot;Submit&quot; to query the database and generate
+                  gene structures
                 </li>
               </ul>
             </li>
@@ -252,10 +248,10 @@ const Manual = () => {
                 </li>
                 <li>Exons appear as green rectangular blocks</li>
                 <li>Introns appear as gray connecting lines</li>
-                <li>
+                {/* <li>
                   All elements are positioned according to their actual genomic
                   coordinates
-                </li>
+                </li> */}
               </ul>
             </li>
             <li>
@@ -272,7 +268,7 @@ const Manual = () => {
             </li>
           </ol>
           <img
-            src="/images/geneviz-interface.png"
+            src="https://res.cloudinary.com/dsjtalfn9/image/upload/geneviz_y8a9ib.png"
             alt="GeneViz Interface"
             className={styles.image}
           />
@@ -283,11 +279,15 @@ const Manual = () => {
       name: "PepperExp",
       content: (
         <div>
-          <h2>PepperExp: Gene Expression Heatmap</h2>
+          <h2>
+            PepperExp: interactive gene expression visualization tool using
+            heatmaps{" "}
+          </h2>
           <p>
             PepperExp enables interactive exploration of gene expression
-            patterns in Piper nigrum through dynamic heatmap visualizations,
-            supporting tissue-specific filtering and detailed sample metadata.
+            patterns in <em>Piper nigrum</em> through dynamic heatmap
+            visualizations, supporting tissue-specific filtering and detailed
+            sample metadata.
           </p>
 
           <h3>How to Use:</h3>
@@ -300,8 +300,7 @@ const Manual = () => {
                   line-delimited)
                 </li>
                 <li>
-                  Click "Try Example" to load a preloaded dataset
-                  (Pn1.1040-Pn21.406)
+                  Click &quot;Try Example&quot; to load a preloaded dataset
                 </li>
               </ul>
             </li>
@@ -324,8 +323,9 @@ const Manual = () => {
             <li>
               <strong>Generate Visualization:</strong>
               <ul>
-                <li>Click "Generate Heatmap" to process your query</li>
-                <li>The system validates inputs and retrieves FPKM values</li>
+                <li>
+                  Click &quot;Generate Heatmap&quot; to process your query
+                </li>
               </ul>
             </li>
             <li>
@@ -357,7 +357,6 @@ const Manual = () => {
                     <li>Sample ID</li>
                     <li>Study accession codes</li>
                     <li>Sequencing platform</li>
-                    <li>Experimental conditions</li>
                   </ul>
                 </li>
                 <li>
@@ -368,7 +367,7 @@ const Manual = () => {
             </li>
           </ol>
           <img
-            src="/images/pepperexp-interface.png"
+            src="https://res.cloudinary.com/dsjtalfn9/image/upload/geneexp_aj5sas.png"
             alt="PepperExp Interface"
             className={styles.image}
           />
@@ -379,11 +378,10 @@ const Manual = () => {
       name: "PepperClust",
       content: (
         <div>
-          <h2>PepperClust: Gene Expression Clustering</h2>
+          <h2>PepperClust: hierarchical clustering analysis tool </h2>
           <p>
             PepperClust enables interactive exploration of gene expression
-            patterns through hierarchical cluster analysis, helping researchers
-            identify co-expressed genes and expression patterns.
+            patterns through hierarchical cluster analysis.
           </p>
 
           <h3>How to Use:</h3>
@@ -393,8 +391,7 @@ const Manual = () => {
               <ul>
                 <li>Enter gene IDs in the text area (comma-separated)</li>
                 <li>
-                  Click "Try Example" to load demonstration genes (Pn1.1 to
-                  Pn1.1043)
+                  Click &quot;Try Example&quot; to load demonstration genes
                 </li>
               </ul>
             </li>
@@ -422,7 +419,9 @@ const Manual = () => {
             <li>
               <strong>Generate Results:</strong>
               <ul>
-                <li>Click "Generate Visualization" to process your query</li>
+                <li>
+                  Click &quot;Generate Visualization&quot; to process your query
+                </li>
                 <li>Reset button clears all parameters if needed</li>
               </ul>
             </li>
@@ -466,16 +465,15 @@ const Manual = () => {
                   Supplementary table provides detailed information about
                   samples:
                   <ul>
-                    <li>Sequencing platform (Illumina)</li>
+                    <li>Sequencing platform</li>
                     <li>Study accession codes</li>
-                    <li>Experimental descriptions</li>
                   </ul>
                 </li>
               </ul>
             </li>
           </ol>
           <img
-            src="/images/pepperclust-interface.png"
+            src="https://res.cloudinary.com/dsjtalfn9/image/upload/pepclust_hmojt3.png"
             alt="PepperClust Interface"
             className={styles.image}
           />
@@ -489,8 +487,9 @@ const Manual = () => {
           <h2>TF Family Exploration</h2>
           <p>
             The Transcription Factor Family interface provides comprehensive
-            access to transcription factor families within the Piper nigrum
-            genome, with detailed gene structure visualization capabilities.
+            access to transcription factor families within the{" "}
+            <em>Piper nigrum</em> genome, with detailed gene structure
+            visualization capabilities.
           </p>
 
           <h3>How to Use:</h3>
@@ -539,15 +538,11 @@ const Manual = () => {
                     <li>Complete exon-intron organization</li>
                   </ul>
                 </li>
-                <li>
-                  This allows comparison of gene structures within and across
-                  families
-                </li>
               </ul>
             </li>
           </ol>
           <img
-            src="/images/tf-family-interface.png"
+            src="https://res.cloudinary.com/dsjtalfn9/image/upload/genefamily_dothhl.png"
             alt="TF Family Interface"
             className={styles.image}
           />
@@ -561,8 +556,8 @@ const Manual = () => {
           <h2>SNP Marker Database</h2>
           <p>
             The SNP Marker Database provides an integrated platform for
-            exploring genetic variation in Piper nigrum, offering comprehensive
-            access to single nucleotide polymorphism data.
+            exploring genetic variation in <em>Piper nigrum</em>, offering
+            comprehensive access to single nucleotide polymorphism data.
           </p>
 
           <h3>How to Use:</h3>
@@ -571,21 +566,22 @@ const Manual = () => {
               <strong>Select a Study:</strong>
               <ul>
                 <li>
-                  Begin by choosing from available research datasets:
-                  <ul>
+                  Begin by choosing from available research datasets
+                  {/* <ul>
                     <li>2024 population structure analysis</li>
                     <li>2025 genome-wide SNP catalog</li>
-                  </ul>
+                  </ul> */}
                 </li>
                 <li>
-                  Click "View Details" to proceed to the analysis interface
+                  Click &quot;View SNPs&quot; to proceed to the analysis
+                  interface
                 </li>
               </ul>
             </li>
             <li>
               <strong>Specify Search Parameters:</strong>
               <ul>
-                <li>Select a chromosome (e.g., "Pn1") from the dropdown</li>
+                <li>Enter the chromosome</li>
                 <li>
                   Define position range by entering start and end coordinates
                 </li>
@@ -617,110 +613,118 @@ const Manual = () => {
                   </ul>
                 </li>
                 <li>Hover over data points to view additional details</li>
-                <li>Click on specific points to refine your search</li>
               </ul>
             </li>
           </ol>
+          <img
+            src="https://res.cloudinary.com/dsjtalfn9/image/upload/snp0_pp6fun.png"
+            alt="SNP Marker Interface"
+            className={styles.image}
+          />
         </div>
       ),
     },
-    {
-      name: "JBrowse2",
-      content: (
-        <div>
-          <h2>JBrowse2 Genome Browser</h2>
-          <p>
-            JBrowse2 provides an interactive visualization platform for
-            exploring the black pepper reference genome, enabling researchers to
-            navigate genomic features, annotations, and variants.
-          </p>
+    // {
+    //   name: "JBrowse2",
+    //   content: (
+    //     <div>
+    //       <h2>JBrowse2 Genome Browser</h2>
+    //       <p>
+    //         JBrowse2 provides an interactive visualization platform for
+    //         exploring the black pepper reference genome, enabling researchers to
+    //         navigate genomic features, annotations, and variants.
+    //       </p>
 
-          <h3>How to Use:</h3>
-          <ol className={styles.manual}>
-            <li>
-              <strong>Select Genome Assembly:</strong>
-              <ul>
-                <li>
-                  Use the dropdown menu to choose Piper_nigrum_genome (Pn1
-                  version)
-                </li>
-                <li>
-                  Select between two exploration methods:
-                  <ul>
-                    <li>
-                      "Show all regions of assembly" for complete chromosome
-                      overview
-                    </li>
-                    <li>
-                      Search box for direct input of coordinates, gene IDs, or
-                      feature types
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong>Navigate Genomic Visualization:</strong>
-              <ul>
-                <li>
-                  Three synchronized tracks display:
-                  <ul>
-                    <li>
-                      <strong>Reference sequence track:</strong> DNA sequence
-                      with adjustable resolution
-                    </li>
-                    <li>
-                      <strong>Annotation track:</strong> Gene models with exons
-                      (colored boxes) connected by intron lines
-                    </li>
-                    <li>
-                      <strong>Variant track:</strong> SNP and indel positions
-                      relative to reference
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  Use zoom controls to adjust detail level from chromosome-scale
-                  to single-nucleotide views
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong>Inspect Features:</strong>
-              <ul>
-                <li>
-                  Click on any feature to open a detailed pop-up window showing:
-                  <ul>
-                    <li>Precise genomic coordinates</li>
-                    <li>Feature type and length</li>
-                    <li>Unique identifiers</li>
-                    <li>Source information</li>
-                    <li>Complete coding sequence in FASTA format</li>
-                  </ul>
-                </li>
-                <li>
-                  Feature table provides tabular overview of all annotated
-                  elements in the viewed region
-                </li>
-                <li>
-                  Use sorting and filtering capabilities to locate specific
-                  features
-                </li>
-              </ul>
-            </li>
-          </ol>
-        </div>
-      ),
-    },
+    //       <h3>How to Use:</h3>
+    //       <ol className={styles.manual}>
+    //         <li>
+    //           <strong>Select Genome Assembly:</strong>
+    //           <ul>
+    //             <li>
+    //               Use the dropdown menu to choose Piper_nigrum_genome (Pn1
+    //               version)
+    //             </li>
+    //             <li>
+    //               Select between two exploration methods:
+    //               <ul>
+    //                 <li>
+    //                   &quot;Show all regions of assembly&quot; for complete
+    //                   chromosome overview
+    //                 </li>
+    //                 <li>
+    //                   Search box for direct input of coordinates, gene IDs, or
+    //                   feature types
+    //                 </li>
+    //               </ul>
+    //             </li>
+    //           </ul>
+    //         </li>
+    //         <li>
+    //           <strong>Navigate Genomic Visualization:</strong>
+    //           <ul>
+    //             <li>
+    //               Three synchronized tracks display:
+    //               <ul>
+    //                 <li>
+    //                   <strong>Reference sequence track:</strong> DNA sequence
+    //                   with adjustable resolution
+    //                 </li>
+    //                 <li>
+    //                   <strong>Annotation track:</strong> Gene models with exons
+    //                   (colored boxes) connected by intron lines
+    //                 </li>
+    //                 <li>
+    //                   <strong>Variant track:</strong> SNP and indel positions
+    //                   relative to reference
+    //                 </li>
+    //               </ul>
+    //             </li>
+    //             <li>
+    //               Use zoom controls to adjust detail level from chromosome-scale
+    //               to single-nucleotide views
+    //             </li>
+    //           </ul>
+    //         </li>
+    //         <li>
+    //           <strong>Inspect Features:</strong>
+    //           <ul>
+    //             <li>
+    //               Click on any feature to open a detailed pop-up window showing:
+    //               <ul>
+    //                 <li>Precise genomic coordinates</li>
+    //                 <li>Feature type and length</li>
+    //                 <li>Unique identifiers</li>
+    //                 <li>Source information</li>
+    //                 <li>Complete coding sequence in FASTA format</li>
+    //               </ul>
+    //             </li>
+    //             <li>
+    //               Feature table provides tabular overview of all annotated
+    //               elements in the viewed region
+    //             </li>
+    //             <li>
+    //               Use sorting and filtering capabilities to locate specific
+    //               features
+    //             </li>
+    //           </ul>
+    //         </li>
+    //       </ol>
+    //       <img
+    //         src="/images/jbrowse2res.png"
+    //         alt="JBrowse2"
+    //         className={styles.image}
+    //       />
+    //     </div>
+    //   ),
+    // },
     {
       name: "Gallery",
       content: (
         <div>
-          <h2>Black Pepper Gallery</h2>
+          <h2>Gallery</h2>
           <p>
             The Gallery interface provides an interactive platform for exploring
-            high-quality images of Piper nigrum varieties and plant morphology,
-            with detailed information about each specimen.
+            high-quality images of black pepper.
           </p>
 
           <h3>How to Use:</h3>
@@ -735,7 +739,10 @@ const Manual = () => {
                 <li>
                   Images cycle every five seconds with smooth fade transitions
                 </li>
-                <li>Click "Explore Collection" to access the main gallery</li>
+                <li>
+                  Click &quot;Explore Collection&quot; to access the main
+                  gallery
+                </li>
               </ul>
             </li>
             <li>
@@ -752,12 +759,9 @@ const Manual = () => {
                       Three Sri Lankan black pepper varieties (DingiRala,
                       BootaweRala, KohukumbureRala)
                     </li>
-                    <li>
-                      Detailed photographs of fruits, inflorescences, and leaves
-                    </li>
+                    <li>Photographs of fruits, inflorescences, and leaves</li>
                   </ul>
                 </li>
-                <li>Hover over any image to display zoom icon</li>
               </ul>
             </li>
             <li>
@@ -772,14 +776,13 @@ const Manual = () => {
                       showing photograph alongside agronomic data
                     </li>
                     <li>
-                      <strong>Plant part images:</strong> Full-screen mode for
-                      detailed morphological examination
+                      <strong>Plant part images:</strong> Full-screen mode
                     </li>
                   </ul>
                 </li>
               </ul>
             </li>
-            <li>
+            {/* <li>
               <strong>Access Variety Data:</strong>
               <ul>
                 <li>
@@ -790,113 +793,114 @@ const Manual = () => {
                     <li>Biochemical properties (5.6–6.3% piperin content)</li>
                   </ul>
                 </li>
-                <li>
-                  Use navigation controls to browse through the collection
-                </li>
-                <li>Keyboard shortcuts available for accessibility</li>
               </ul>
-            </li>
+            </li> */}
           </ol>
           <img
-            src="/images/gallery-interface.png"
+            src="https://res.cloudinary.com/dsjtalfn9/image/upload/gallery3_nhxovn.png"
             alt="Gallery Interface"
             className={styles.image}
           />
         </div>
       ),
     },
-    {
-      name: "BLAST",
-      content: (
-        <div>
-          <h2>BLAST: Basic Local Alignment Search Tool</h2>
-          <p>
-            The BLAST tool allows researchers to compare nucleotide or protein
-            sequences to the black pepper sequence database, identifying regions
-            of similarity between sequences.
-          </p>
+    // {
+    //   name: "BLAST",
+    //   content: (
+    //     <div>
+    //       <h2>BLAST: Basic Local Alignment Search Tool</h2>
+    //       <p>
+    //         The BLAST tool allows researchers to compare nucleotide or protein
+    //         sequences to the black pepper sequence database, identifying regions
+    //         of similarity between sequences.
+    //       </p>
 
-          <h3>How to Use:</h3>
-          <ol className={styles.manual}>
-            <li>
-              <strong>Select BLAST Program:</strong>
-              <ul>
-                <li>
-                  Choose from available BLAST programs:
-                  <ul>
-                    <li>
-                      blastn - Search nucleotide database using nucleotide query
-                    </li>
-                    <li>
-                      blastp - Search protein database using protein query
-                    </li>
-                    <li>
-                      blastx - Search protein database using translated
-                      nucleotide query
-                    </li>
-                    <li>
-                      tblastn - Search translated nucleotide database using
-                      protein query
-                    </li>
-                    <li>
-                      tblastx - Search translated nucleotide database using
-                      translated nucleotide query
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong>Enter Your Query:</strong>
-              <ul>
-                <li>Paste your sequence in FASTA format in the input box</li>
-                <li>
-                  Alternatively, upload a FASTA file using the file upload
-                  option
-                </li>
-                <li>Example sequences are available for demonstration</li>
-              </ul>
-            </li>
-            <li>
-              <strong>Set Parameters:</strong>
-              <ul>
-                <li>
-                  Adjust search sensitivity:
-                  <ul>
-                    <li>E-value threshold</li>
-                    <li>Word size</li>
-                    <li>Max target sequences</li>
-                  </ul>
-                </li>
-                <li>
-                  Select database to search against (genomic, CDS, protein)
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong>Submit and View Results:</strong>
-              <ul>
-                <li>
-                  Results display includes:
-                  <ul>
-                    <li>Graphical overview of alignments</li>
-                    <li>Tabular hit list with scores and E-values</li>
-                    <li>
-                      Detailed alignments showing exact matches and mismatches
-                    </li>
-                  </ul>
-                </li>
-                <li>Download results in various formats (XML, tabular)</li>
-                <li>
-                  Click on hit identifiers to view corresponding gene
-                  information
-                </li>
-              </ul>
-            </li>
-          </ol>
-        </div>
-      ),
-    },
+    //       <h3>How to Use:</h3>
+    //       <ol className={styles.manual}>
+    //         <li>
+    //           <strong>Select BLAST Program:</strong>
+    //           <ul>
+    //             <li>
+    //               Choose from available BLAST programs:
+    //               <ul>
+    //                 <li>
+    //                   blastn - Search nucleotide database using nucleotide query
+    //                 </li>
+    //                 <li>
+    //                   blastp - Search protein database using protein query
+    //                 </li>
+    //                 <li>
+    //                   blastx - Search protein database using translated
+    //                   nucleotide query
+    //                 </li>
+    //                 <li>
+    //                   tblastn - Search translated nucleotide database using
+    //                   protein query
+    //                 </li>
+    //                 <li>
+    //                   tblastx - Search translated nucleotide database using
+    //                   translated nucleotide query
+    //                 </li>
+    //               </ul>
+    //             </li>
+    //           </ul>
+    //         </li>
+    //         <li>
+    //           <strong>Enter Your Query:</strong>
+    //           <ul>
+    //             <li>Paste your sequence in FASTA format in the input box</li>
+    //             <li>
+    //               Alternatively, upload a FASTA file using the file upload
+    //               option
+    //             </li>
+    //             <li>Example sequences are available for demonstration</li>
+    //           </ul>
+    //         </li>
+    //         <li>
+    //           <strong>Set Parameters:</strong>
+    //           <ul>
+    //             <li>
+    //               Adjust search sensitivity:
+    //               <ul>
+    //                 <li>E-value threshold</li>
+    //                 <li>Word size</li>
+    //                 <li>Max target sequences</li>
+    //               </ul>
+    //             </li>
+    //             <li>
+    //               Select database to search against (genomic, CDS, protein)
+    //             </li>
+    //           </ul>
+    //         </li>
+    //         <li>
+    //           <strong>Submit and View Results:</strong>
+    //           <ul>
+    //             <li>
+    //               Results display includes:
+    //               <ul>
+    //                 <li>Graphical overview of alignments</li>
+    //                 <li>Tabular hit list with scores and E-values</li>
+    //                 <li>
+    //                   Detailed alignments showing exact matches and mismatches
+    //                 </li>
+    //               </ul>
+    //             </li>
+    //             <li>Download results in various formats (XML, tabular)</li>
+    //             <li>
+    //               Click on hit identifiers to view corresponding gene
+    //               information
+    //             </li>
+    //           </ul>
+    //         </li>
+    //       </ol>
+    //       <img
+    //         src="/images/blast_01.png"
+    //         alt="BLAST Interface"
+    //         className={styles.image}
+    //       />
+    //     </div>
+    //   ),
+    // },
     {
       name: "Contact",
       content: (
@@ -904,8 +908,7 @@ const Manual = () => {
           <h2>Contact Form</h2>
           <p>
             The Contact Page provides an intuitive interface for communicating
-            with the Black Pepper Knowledgebase team, with responsive design and
-            validation features.
+            with the Black Pepper Knowledgebase team.
           </p>
 
           <h3>How to Use:</h3>
@@ -922,27 +925,20 @@ const Manual = () => {
                     <li>Message Content</li>
                   </ul>
                 </li>
-                <li>
-                  Fields feature dynamic visual cues including floating labels
-                  and focus borders
-                </li>
               </ul>
             </li>
             <li>
               <strong>Submit Your Message:</strong>
               <ul>
-                <li>Click "Send Message" to submit your inquiry</li>
-                <li>
-                  The system performs client-side validation before submission
-                </li>
-                <li>A loading spinner appears during processing</li>
+                <li>Click &quot;Send Message&quot; to submit your inquiry</li>
               </ul>
             </li>
             <li>
               <strong>Confirmation and Feedback:</strong>
               <ul>
                 <li>
-                  Successful submissions trigger a "Message Sent!" confirmation
+                  Successful submissions trigger a &quot;Message Sent!&quot;
+                  confirmation
                 </li>
                 <li>The form automatically resets after three seconds</li>
                 <li>
@@ -953,7 +949,7 @@ const Manual = () => {
             </li>
           </ol>
           <img
-            src="/images/contact-interface.png"
+            src="https://res.cloudinary.com/dsjtalfn9/image/upload/cn1_ha2bcc.png"
             alt="Contact Interface"
             className={styles.image}
           />
