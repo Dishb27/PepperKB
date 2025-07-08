@@ -4,16 +4,11 @@ import { useState, useEffect } from "react";
 import {
   FaSpinner,
   FaExclamationCircle,
-  FaDna,
   FaLayerGroup,
-  FaSitemap,
   FaThLarge,
-  FaProjectDiagram,
   FaInfoCircle,
-  FaFileCode,
   FaStream,
 } from "react-icons/fa";
-import { GiChromosome } from "react-icons/gi";
 import Footer from "../components/footer";
 import styles from "../styles/summary.module.css";
 import Header from "../components/header";
@@ -25,9 +20,6 @@ const SummaryPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState("geneDetails");
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
-  const [openDropdown, setOpenDropdown] = useState(null); // State for dropdown
-
   const [goTableData, setGoTableData] = useState([]);
 
   useEffect(() => {
@@ -49,13 +41,6 @@ const SummaryPage = () => {
       fetchGoTableData();
     }
   }, [geneID]); // Only run this effect if geneID changes
-
-  // Toggle mobile menu
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  // Toggle dropdown
-  const toggleDropdown = (index) =>
-    setOpenDropdown(openDropdown === index ? null : index);
 
   useEffect(() => {
     if (!geneID) return;
@@ -130,7 +115,7 @@ const SummaryPage = () => {
             </li>
             <li className={styles.card}>
               <div className={styles.cardContent}>
-                <strong>Gene Range:</strong>
+                <strong>Genomic Location:</strong>
                 <span>{geneData.Gene_Range || "N/A"}</span>
               </div>
             </li>
