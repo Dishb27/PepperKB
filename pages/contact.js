@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Send,
   User,
   Mail,
   MessageSquare,
@@ -89,7 +88,7 @@ const ContactForm = () => {
           errorData.message || "Failed to send message. Please try again."
         );
       }
-    } catch (error) {
+    } catch {
       setError(
         "An error occurred while sending your message. Please try again."
       );
@@ -114,7 +113,7 @@ const ContactForm = () => {
               <p>
                 If you have any questions, comments, or inquiries, please feel
                 free to contact us. We are here to assist you with any issues
-                you encounter while browsing the Black Pepper Knowledgebase.
+                you encounter while browsing the BlackPepKB.
               </p>
             </div>
 
@@ -130,7 +129,9 @@ const ContactForm = () => {
                     <CheckCircle size={48} strokeWidth={1.5} />
                   </div>
                   <h2>Message Sent!</h2>
-                  <p>Thank you for reaching out. We'll get back to you soon.</p>
+                  <p>
+                    Thank you for reaching out. We&apos;ll get back to you soon.
+                  </p>
                 </div>
               ) : (
                 <div className={styles.formContent}>
