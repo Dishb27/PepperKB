@@ -12,7 +12,7 @@ const SNPMarkers = () => {
   const { study } = router.query;
 
   // State variables
-  const [studyId, setStudyId] = useState("");
+  const [, setStudyId] = useState("");
   const [studyName, setStudyName] = useState("");
   const [chromosome, setChromosome] = useState("");
   const [chromosomeStart, setChromosomeStart] = useState("");
@@ -25,8 +25,21 @@ const SNPMarkers = () => {
   const [showHeatmap, setShowHeatmap] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const [, setCurrentPage] = useState(1);
+  const [, setTotalPages] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Fetch study data with pagination
   const fetchStudyData = async (page = 1) => {
@@ -48,7 +61,7 @@ const SNPMarkers = () => {
 
         // Fetch SNP data with pagination
         const snpResponse = await fetch(
-          `/api/snp?studyId=${currentStudyId}&page=${page}&pageSize=500`
+          `/api/snp?studyId=${currentStudyId}&page=${page}&pageSize=20000`
         );
         if (!snpResponse.ok) {
           throw new Error(`HTTP error! Status: ${snpResponse.status}`);
@@ -125,6 +138,11 @@ const SNPMarkers = () => {
       return;
     }
 
+    if (start >= end) {
+      alert("Start position must be less than end position.");
+      return;
+    }
+
     const results = allData.filter(
       (entry) =>
         entry.chromosome.toLowerCase() === chromosome.toLowerCase() &&
@@ -149,30 +167,77 @@ const SNPMarkers = () => {
     setShowHeatmap(true);
   };
 
-  // Render pagination controls
-  const renderPaginationControls = () => {
-    return (
-      <div className={styles.paginationControls}>
-        <button
-          onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        <span>
-          Page {currentPage} of {totalPages}
-        </span>
-        <button
-          onClick={() =>
-            setCurrentPage((page) => Math.min(totalPages, page + 1))
-          }
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
-      </div>
-    );
+  // Handle auto-fill suggested range
+  const handleAutoFill = () => {
+    if (autoStart !== null && autoEnd !== null) {
+      setChromosomeStart(autoStart.toString());
+      setChromosomeEnd(autoEnd.toString());
+    }
   };
+
+  // Get unique chromosomes for dropdown
+  const getUniqueChromosomes = () => {
+    const chromosomes = [...new Set(allData.map((entry) => entry.chromosome))];
+    return chromosomes.sort();
+  };
+
+  // Export results to CSV
+  const exportToCSV = () => {
+    if (filteredResults.length === 0) return;
+
+    const headers = [
+      "Chromosome",
+      "Position",
+      "Reference Allele",
+      "Alternative Allele",
+    ];
+    const csvContent = [
+      headers.join(","),
+      ...filteredResults.map((result) =>
+        [
+          result.chromosome,
+          result.position,
+          result.ref,
+          result.alt.join(";"),
+        ].join(",")
+      ),
+    ].join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${studyName}_SNP_results_${chromosome}_${chromosomeStart}-${chromosomeEnd}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  };
+
+  // Render pagination controls (if needed for future use)
+  // const renderPaginationControls = () => {
+  //   return (
+  //     <div className={styles.paginationControls}>
+  //       <button
+  //         onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+  //         disabled={currentPage === 1}
+  //       >
+  //         Previous
+  //       </button>
+  //       <span>
+  //         Page {currentPage} of {totalPages}
+  //       </span>
+  //       <button
+  //         onClick={() =>
+  //           setCurrentPage((page) => Math.min(totalPages, page + 1))
+  //         }
+  //         disabled={currentPage === totalPages}
+  //       >
+  //         Next
+  //       </button>
+  //     </div>
+  //   );
+  // };
 
   // Loading state
   if (loading) {
@@ -182,6 +247,9 @@ const SNPMarkers = () => {
         <div className={styles.loadingContainer}>
           <div className={styles.spinner}></div>
           <p>Loading study data...</p>
+          <p style={{ fontSize: "14px", color: "#666", marginTop: "10px" }}>
+            Please wait while we fetch SNP data...
+          </p>
         </div>
         <Footer />
       </>
@@ -194,9 +262,16 @@ const SNPMarkers = () => {
       <>
         <Header />
         <div className={styles.errorContainer}>
+          <h2>Error Loading Data</h2>
           <p>Error loading study data: {error}</p>
-          <button onClick={() => router.push("/snp_marker")}>
+          <button onClick={() => router.push("/snp_markers")}>
             Return to Study Selection
+          </button>
+          <button
+            onClick={() => window.location.reload()}
+            style={{ marginLeft: "10px" }}
+          >
+            Retry
           </button>
         </div>
         <Footer />
@@ -208,6 +283,11 @@ const SNPMarkers = () => {
     <>
       <Head>
         <title>{studyName} SNP Markers - PepperKB</title>
+        <meta
+          name="description"
+          content={`Search SNP markers for ${studyName} study`}
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
       <Header />
@@ -215,38 +295,74 @@ const SNPMarkers = () => {
       <div className={styles.snpContainer}>
         <h2>SNP Marker Search</h2>
         <p>
-          {/* Study ID: {studyId} - Search for SNP markers using Chromosome and */}
-          Search for SNP markers using Chromosome and Position Range.
+          Search for SNP markers by specifying chromosome and position range
+        </p>
+        <p style={{ fontSize: "14px", color: "#666", textAlign: "center" }}>
+          Total SNPs loaded: {allData.length.toLocaleString()}
         </p>
 
         <form onSubmit={handleSearch} className={styles.searchBar}>
-          <input
-            type="text"
-            placeholder="Chromosome (e.g., Pn1)"
-            value={chromosome}
-            onChange={(e) => setChromosome(e.target.value)}
-          />
-          {/* {autoStart !== null && autoEnd !== null && (
-            <p className={styles.suggestedRange}>
-              Suggested range: Start: {autoStart}, End: {autoEnd}
-            </p>
-          )} */}
-          <div className={styles.chromosomeInputs}>
+          {/* Chromosome input with datalist for suggestions */}
+          <div
+            style={{ position: "relative", width: "100%", maxWidth: "300px" }}
+          >
             <input
               type="text"
+              placeholder="Chromosome (e.g., Pn1)"
+              value={chromosome}
+              onChange={(e) => setChromosome(e.target.value)}
+              list="chromosomes"
+            />
+            <datalist id="chromosomes">
+              {getUniqueChromosomes().map((chr) => (
+                <option key={chr} value={chr} />
+              ))}
+            </datalist>
+          </div>
+
+          {/* Suggested range display */}
+          {autoStart !== null && autoEnd !== null && (
+            <div className={styles.suggestedRange}>
+              Suggested range for {chromosome}: {autoStart.toLocaleString()} -{" "}
+              {autoEnd.toLocaleString()}
+              <button
+                type="button"
+                onClick={handleAutoFill}
+                style={{
+                  marginLeft: "10px",
+                  padding: "4px 8px",
+                  fontSize: "12px",
+                  backgroundColor: "#196f5f",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                }}
+              >
+                Use Range
+              </button>
+            </div>
+          )}
+
+          <div className={styles.chromosomeInputs}>
+            <input
+              type="number"
               placeholder={`Start Position (e.g. ${autoStart || "100"})`}
               value={chromosomeStart}
               onChange={(e) => setChromosomeStart(e.target.value)}
+              min="1"
             />
             <input
-              type="text"
+              type="number"
               placeholder={`End Position (e.g. ${autoEnd || "1000"})`}
               value={chromosomeEnd}
               onChange={(e) => setChromosomeEnd(e.target.value)}
+              min="1"
             />
           </div>
+
           <div className={styles.searchButtons}>
-            <button type="submit">Search</button>
+            <button type="submit">Search SNPs</button>
             <button type="button" onClick={handleReset}>
               Reset
             </button>
@@ -260,25 +376,36 @@ const SNPMarkers = () => {
           </div>
         </form>
 
-        {showHeatmap && (
-          <SNPHeatmap
-            chromosomes={
-              filteredResults.length > 0
-                ? filteredResults.map((entry) => entry.chromosome)
-                : []
-            }
-            heatmapData={filteredResults.length > 0 ? filteredResults : allData}
-          />
+        {/* Heatmap section */}
+        {showHeatmap && allData.length > 0 && (
+          <div className={styles.visualizationSection}>
+            {/* <h3>SNP Distribution Heatmap</h3> */}
+            <SNPHeatmap
+              chromosomes={
+                filteredResults.length > 0
+                  ? filteredResults.map((entry) => entry.chromosome)
+                  : []
+              }
+              heatmapData={
+                filteredResults.length > 0 ? filteredResults : allData
+              }
+            />
+          </div>
         )}
 
+        {/* Results section */}
         {noResults ? (
           <div className={styles.noResultsMessage}>
-            No results found for your search.
+            <h3>No Results Found</h3>
+            <p>No SNP markers found for your search criteria.</p>
+            <p>Try adjusting your chromosome or position range.</p>
           </div>
         ) : (
           filteredResults.length > 0 && (
             <>
+              {/* SNP Visualization */}
               <div className={styles.visualizationSection}>
+                {/* <h3>SNP Visualization</h3> */}
                 <SNPVisualization
                   snps={filteredResults}
                   start={parseInt(chromosomeStart)}
@@ -286,31 +413,97 @@ const SNPMarkers = () => {
                 />
               </div>
 
+              {/* Results Table */}
               <div className={styles.resultsSection}>
-                <h3>Search Results</h3>
-                <table className={styles.resultsTable}>
-                  <thead>
-                    <tr>
-                      {/* <th>Variant ID</th> */}
-                      <th>Chromosome</th>
-                      <th>Position</th>
-                      <th>Reference Allele</th>
-                      <th>Alternative Allele</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredResults.map((result, index) => (
-                      <tr key={index}>
-                        {/* <td>{result.id}</td> */}
-                        <td>{result.chromosome}</td>
-                        <td>{result.position}</td>
-                        <td>{result.ref}</td>
-                        <td>{result.alt.join(", ")}</td>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    flexWrap: "wrap",
+                    gap: "10px",
+                    marginBottom: "20px",
+                  }}
+                >
+                  <h3>
+                    Search Results ({filteredResults.length.toLocaleString()}{" "}
+                    SNPs found)
+                  </h3>
+                  <button
+                    onClick={exportToCSV}
+                    style={{
+                      padding: "8px 16px",
+                      backgroundColor: "#27ae60",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "4px",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Export CSV
+                  </button>
+                </div>
+
+                {/* Table container with scrolling */}
+                <div className={styles.tableContainer}>
+                  <table className={styles.resultsTable}>
+                    <thead>
+                      <tr>
+                        <th>Chromosome</th>
+                        <th>Position</th>
+                        <th>Reference Allele</th>
+                        <th>Alternative Allele</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-                {/* {renderPaginationControls()} */}
+                    </thead>
+                    <tbody>
+                      {filteredResults.map((result, index) => (
+                        <tr
+                          key={`${result.chromosome}-${result.position}-${index}`}
+                        >
+                          <td>{result.chromosome}</td>
+                          <td>{result.position.toLocaleString()}</td>
+                          <td>{result.ref}</td>
+                          <td>{result.alt.join(", ")}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Mobile scroll hint */}
+                {isMobile && (
+                  <div
+                    style={{
+                      fontSize: "12px",
+                      color: "#666",
+                      textAlign: "center",
+                      marginTop: "10px",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    💡 Scroll horizontally to view all columns
+                  </div>
+                )}
+
+                {/* Results summary */}
+                <div
+                  style={{
+                    marginTop: "15px",
+                    padding: "10px",
+                    backgroundColor: "#f8f9fa",
+                    borderRadius: "5px",
+                    fontSize: "14px",
+                    color: "#666",
+                  }}
+                >
+                  <strong>Search Summary:</strong> Found{" "}
+                  {filteredResults.length.toLocaleString()} SNPs on chromosome{" "}
+                  {chromosome} between positions{" "}
+                  {parseInt(chromosomeStart).toLocaleString()}
+                  {" and "}
+                  {parseInt(chromosomeEnd).toLocaleString()}
+                </div>
               </div>
             </>
           )
