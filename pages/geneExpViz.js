@@ -10,7 +10,7 @@ const GeneExpVizPage = () => {
     {
       href: "/efp_browser",
       icon: "dna",
-      title: "Electronic Fluorescent Pictograph (eFP)",
+      title: "Pepper-eFP Browser",
       description:
         "Tissue-specific gene expression mapping with detailed visualization",
       gradient: "gradientBioinformatics",
@@ -18,8 +18,8 @@ const GeneExpVizPage = () => {
     {
       href: "/pepperExp",
       icon: "chart-column",
-      title: "Expression Heatmap",
-      description: "Comprehensive multi-condition expression pattern analysis",
+      title: "PepperExp",
+      description: "Comprehensive expression pattern analysis",
       gradient: "gradientData",
     },
   ];
@@ -45,8 +45,8 @@ const GeneExpVizPage = () => {
           <div className={styles.heroContent}>
             <h1 className={styles.heroTitle}>Gene Expression Visualization</h1>
             <p className={styles.heroSubtitle}>
-              Explore comprehensive pepper gene expression datasets through
-              interactive, publication-quality visualization tools
+              Explore comprehensive black pepper gene expression datasets
+              through interactive visualization tools
             </p>
           </div>
         </section>
