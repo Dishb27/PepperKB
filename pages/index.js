@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import {
   Layers,
   Search,
   Globe,
-  DollarSign,
   Leaf,
   Utensils,
 } from "lucide-react";
@@ -21,9 +19,11 @@ import Footer from "../components/footer";
 import Header from "../components/header";
 
 export default function Home() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [, setIsScrolled] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
-  const router = useRouter();
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const statsRef = useRef(null);
+  //const router = useRouter();
 
   const handleScroll = () => {
     setIsScrolled(window.scrollY > window.innerHeight);
@@ -125,7 +125,7 @@ export default function Home() {
 
   const navigationTools = [
     {
-      src: "/images/pp_efp.svg",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/pp_efp_wft5ap.svg",
       alt: "eFP Browser",
       label: "eFP Browser",
       description:
@@ -134,18 +134,18 @@ export default function Home() {
       icon: Leaf,
       color: "#2ecc71",
     },
+    // {
+    //   src: "https://res.cloudinary.com/dsjtalfn9/image/upload/blast_e1jhh1.svg",
+    //   alt: "BLAST",
+    //   label: "BLAST",
+    //   description:
+    //     "Align your sequences against the black pepper genome and proteome using the BLAST tool.",
+    //   link: "/blast",
+    //   icon: DollarSign,
+    //   color: "#3498db",
+    // },
     {
-      src: "/images/blast.svg",
-      alt: "BLAST",
-      label: "BLAST",
-      description:
-        "Align your sequences against the black pepper genome and proteome using the BLAST tool.",
-      link: "/blast",
-      icon: DollarSign,
-      color: "#3498db",
-    },
-    {
-      src: "/images/jbrowse.svg",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/jbrowse_i4foyb.svg",
       alt: "JBrowse2",
       label: "JBrowse2",
       description:
@@ -155,7 +155,7 @@ export default function Home() {
       color: "#9b59b6",
     },
     {
-      src: "/images/ppExp.svg",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/ppExp_czqcch.svg",
       alt: "Expression Heatmap",
       label: "PepperExp",
       description: "Visualize gene expression data using interactive heatmaps.",
@@ -164,7 +164,7 @@ export default function Home() {
       color: "#e74c3c",
     },
     {
-      src: "/images/snp_final.svg",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/snp_final_zl0zja.svg",
       alt: "SNP Marker Search",
       label: "SNP Marker Search",
       description: "Search for markers using chromosome and position range.",
@@ -173,7 +173,7 @@ export default function Home() {
       color: "#f39c12",
     },
     {
-      src: "/images/geneviz1.svg",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/geneviz1_tl6g0r.svg",
       alt: "GeneViz",
       label: "GeneViz",
       description:
@@ -183,7 +183,7 @@ export default function Home() {
       color: "#f39c12",
     },
     {
-      src: "/images/goPep.svg",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/goPep_cok5xv.svg",
       alt: "GO-Pep",
       label: "GO-Pep",
       description:
@@ -193,7 +193,7 @@ export default function Home() {
       color: "#f39c12",
     },
     {
-      src: "/images/pepClust.svg",
+      src: "https://res.cloudinary.com/dsjtalfn9/image/upload/pepClust_xhksvc.svg",
       alt: "PepperClust",
       label: "PepperClust",
       description:
@@ -203,6 +203,63 @@ export default function Home() {
       color: "#f39c12",
     },
   ];
+
+  const stats = [
+    { label: "Genes", value: 63451 },
+    { label: "SNPs", value: 432418 },
+    { label: "GO Terms", value: 273018 },
+    { label: "TF Families", value: 62 },
+  ];
+
+  const animateCounters = () => {
+    if (hasAnimated) return;
+
+    stats.forEach((stat, index) => {
+      const element = document.getElementById(`counter-${index}`);
+      if (!element) return;
+
+      let current = 0;
+      const target = stat.value;
+      const increment = target / 100;
+      const duration = 2000; // 2 seconds
+      const intervalTime = duration / 100;
+
+      const counter = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target.toLocaleString();
+          clearInterval(counter);
+        } else {
+          element.textContent = Math.floor(current).toLocaleString();
+        }
+      }, intervalTime);
+    });
+
+    setHasAnimated(true);
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            animateCounters();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
+
+    return () => {
+      if (statsRef.current) {
+        observer.unobserve(statsRef.current);
+      }
+    };
+  }, [hasAnimated]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -214,17 +271,58 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>PepperKB - Black Pepper Knowledgebase</title>
+        <title>BlackPepKB - Black Pepper Knowledgebase</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+          rel="preload"
+          as="image"
+          href="https://res.cloudinary.com/dsjtalfn9/image/upload/q_auto,f_auto,w_800/fruit3_ngcrh2.jpg"
+          media="(max-width: 768px)"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="https://res.cloudinary.com/dsjtalfn9/image/upload/fruit3_ngcrh2.jpg"
+          media="(min-width: 769px)"
+        />
       </Head>
 
       <Header />
 
       <section id="home" className="banner">
+        {/* Enhanced mobile fallback image with multiple sources */}
+        <picture>
+          <source
+            media="(max-width: 480px)"
+            srcSet="https://res.cloudinary.com/dsjtalfn9/image/upload/q_auto,f_auto,w_500,h_600,c_fill/fruit3_ngcrh2.jpg"
+          />
+          <source
+            media="(max-width: 768px)"
+            srcSet="https://res.cloudinary.com/dsjtalfn9/image/upload/q_auto,f_auto,w_800,h_700,c_fill/fruit3_ngcrh2.jpg"
+          />
+          <img
+            src="https://res.cloudinary.com/dsjtalfn9/image/upload/q_auto,f_auto,w_800/fruit3_ngcrh2.jpg"
+            alt="Black Pepper Background"
+            className="banner-mobile-fallback"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            onError={(e) => {
+              // Fallback if Cloudinary image fails
+              e.target.style.display = "none";
+              e.target.parentElement.style.backgroundColor = "#1b837b";
+            }}
+          />
+        </picture>
+
         <div className="banner-content">
           <h1>BLACK PEPPER KNOWLEDGEBASE</h1>
           <h1>(BlackPepKB)</h1>
-          <p>A web resource for black pepper translational genomics</p>
+          <p>
+            A comprehensive web resource for black pepper translation genomics,
+            providing valuable insights into gene functions, annotations and SNP
+            markers
+          </p>
           <Link href="#introduction" className="cta-button">
             Explore Now
           </Link>
@@ -239,23 +337,36 @@ export default function Home() {
             </h1>
             <div className="intro-content">
               <p>
-                <span className="highlight">PepperKB</span> is a dedicated
-                platform for black pepper (
-                <span className="highlight-italic">
-                  <strong>Piper nigrum</strong>{" "}
-                </span>
-                <span className="highlight">L.</span>), the world's most valued
-                spice crop.
+                <span className="highlight">BlackPepKB</span> is a dedicated
+                platform for black pepper, the world&apos;s most valuable spice
+                crop.
               </p>
               <p>
-                It offers curated data on gene families and SNP markers, along
-                with tools to support your research.
+                It provides curated data on gene families and SNP markers, along
+                with essential tools to support your research.
               </p>
               <p>
-                Explore black pepper's genetics, analyze sequences, and learn
-                more about its unique biology, all in one place.
+                Explore the black pepper genome, analyze sequences, visualize
+                gene expression data, and access a wealth of integrated
+                information—all in one place.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="stats-section" ref={statsRef}>
+        <div className="section-container">
+          <h2 className="section-title">Database Statistics</h2>
+          <div className="stats-grid">
+            {stats.map((stat, index) => (
+              <div className="stat-card" key={index}>
+                <h3 className="stat-number" id={`counter-${index}`}>
+                  0
+                </h3>
+                <p className="stat-label">{stat.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -311,7 +422,7 @@ export default function Home() {
 
       <section id="map" className="map-section">
         <div className="section-container">
-          <h2 className="section-title">Global Production of Black Pepper</h2>
+          <h2 className="section-title">Black Pepper Global Production</h2>
           <div className="map-container">
             <div className="map-overlay"></div>
             <iframe
@@ -355,4 +466,3 @@ export default function Home() {
     </>
   );
 }
-//$env:NODE_OPTIONS="--max-old-space-size=8192"; npm run dev
