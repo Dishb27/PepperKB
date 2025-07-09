@@ -124,7 +124,7 @@
   overflow: hidden;
 }
 
-/* Hero Section (specific to 'Bootawe Variety') */
+
 .heroSlide:nth-child(2) .heroContent {
   background: rgba(
     0,
@@ -144,8 +144,26 @@
   color: #333;
   margin-bottom: 1rem;
   text-align: center;
+  position: relative; 
+  display: inline-block; 
+  padding-bottom: 15px; 
 }
 
+.sectionHeader h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0; /* Position at the bottom instead of top */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    #1b837b,
+    #136f64
+  ); /* Remove var() wrapper */
+  border-radius: 2px;
+}
 .sectionHeader p {
   color: #666;
   font-size: 1.1rem;
@@ -221,13 +239,14 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95);
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
-  animation: fadeIn 0.3s ease forwards;
+  animation: fadeIn 0.4s ease forwards;
+  backdrop-filter: blur(5px);
 }
 
 @keyframes fadeIn {
@@ -241,49 +260,102 @@
   position: absolute;
   top: 20px;
   right: 20px;
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .closeButton:hover {
-  transform: rotate(90deg);
+  transform: rotate(90deg) scale(1.1);
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* Split view lightbox - for images WITH details */
 .lightboxContent {
   position: relative;
-  width: 90%;
-  max-width: 1200px;
-  height: 90vh;
+  width: 95%;
+  max-width: 1400px;
+  height: 92vh;
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 16px;
   display: flex;
   overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.4s ease forwards;
 }
 
+@keyframes slideIn {
+  from {
+    transform: scale(0.9) translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ENHANCED LIGHTBOX IMAGE WITH ZOOM */
 .lightboxImage {
   position: relative;
-  width: 60%;
+  width: 65%;
   height: 100%;
   background: #000;
+  overflow: hidden;
+  cursor: zoom-in;
 }
 
+.lightboxImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: zoom-in;
+}
+
+.lightboxImage:hover img {
+  transform: scale(1.3);
+  cursor: zoom-out;
+}
+
+/* ENHANCED INFO PANEL */
 .lightboxInfo {
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  width: 40%;
+  padding: 30px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  width: 35%;
   overflow-y: auto;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Custom scrollbar for info panel */
+.lightboxInfo::-webkit-scrollbar {
+  width: 8px;
+}
+
+.lightboxInfo::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.lightboxInfo::-webkit-scrollbar-thumb {
+  background: rgba(28, 72, 63, 0.5);
+  border-radius: 4px;
+}
+
+.lightboxInfo::-webkit-scrollbar-thumb:hover {
+  background: rgba(28, 72, 63, 0.7);
 }
 
 /* Full image lightbox - for images WITHOUT details */
@@ -319,60 +391,116 @@
   margin: 0;
 }
 
-/* Header Styling */
+/* ENHANCED HEADER STYLING */
 .lightboxHeader {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   text-align: center;
   color: rgb(28, 72, 63);
   font-family: "Roboto", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 10px 0;
+  letter-spacing: 1.5px;
+  padding: 20px 0;
+  border-bottom: 3px solid rgba(28, 72, 63, 0.2);
+  position: relative;
 }
 
-/* Detailed Info Styling */
+.lightboxHeader::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: rgb(28, 72, 63);
+  border-radius: 2px;
+}
+
+/* ENHANCED DESCRIPTION */
+.lightboxDescription {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  font-style: italic;
+  text-align: center;
+  padding: 15px;
+  background: rgba(28, 72, 63, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid rgb(28, 72, 63);
+}
+
+/* ENHANCED DETAILED INFO STYLING */
 .detailedInfo {
-  margin-top: 20px;
-  font-size: 16px;
+  margin-top: 25px;
+  font-size: 15px;
   color: #333;
-  line-height: 1.8;
-  padding: 20px;
-  border-radius: 12px;
-  background-color: #ffffff;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  line-height: 1.9;
+  padding: 25px;
+  border-radius: 15px;
+  background: #ffffff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(28, 72, 63, 0.1);
 }
 
-/* Add Hover Effect to Detailed Info */
 .detailedInfo:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  border-color: rgba(28, 72, 63, 0.2);
 }
 
-/* Paragraph Styling */
-.detailedInfo p {
-  margin: 12px 0;
+/* ENHANCED DETAIL ITEMS */
+.detailItem {
+  margin: 15px 0;
+  padding: 12px 0;
   font-weight: normal;
   color: #555;
   font-family: "Arial", sans-serif;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+  position: relative;
+  padding-left: 15px;
 }
 
-/* Strong Text Inside Detailed Info */
-.detailedInfo p strong {
+.detailItem::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: rgb(28, 72, 63);
+  font-weight: bold;
+  opacity: 0.7;
+}
+
+.detailItem:hover {
+  color: rgb(28, 72, 63);
+  cursor: pointer;
+  padding-left: 20px;
+  background: rgba(28, 72, 63, 0.02);
+  border-radius: 6px;
+}
+
+.detailItem:hover::before {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.detailItem:last-child {
+  border-bottom: none;
+}
+
+/* Strong Text Inside Detail Items */
+.detailItem strong {
   font-weight: bold;
   color: rgb(28, 72, 63);
   font-size: 1.1rem;
-}
-
-/* Add subtle hover effect to paragraph text */
-.detailedInfo p:hover {
-  color: rgb(28, 72, 63);
-  cursor: pointer;
+  display: block;
+  margin-bottom: 5px;
 }
 
 /* Responsive Adjustments */
@@ -384,7 +512,8 @@
   .lightboxContent {
     flex-direction: column;
     height: auto;
-    max-height: 90vh;
+    max-height: 95vh;
+    width: 98%;
   }
 
   .lightboxImage,
@@ -395,6 +524,21 @@
   .lightboxImage {
     height: 50vh;
   }
+
+  .lightboxInfo {
+    padding: 20px;
+    max-height: 45vh;
+  }
+
+  .lightboxHeader {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .detailedInfo {
+    padding: 15px;
+    margin-top: 15px;
+  }
 }
 
 .buttonIcon {
@@ -404,4 +548,189 @@
 .headerIcon {
   margin-right: 10px;
   vertical-align: middle;
+}
+
+@media (max-width: 1024px) {
+  .heroSection {
+    height: 100vh !important; /* Force full viewport height */
+    margin-top: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .heroSlide {
+    height: 100vh !important; /* Force slide to take full height */
+    position: relative;
+  }
+
+  .heroImage {
+    width: 100% !important;
+    height: 100vh !important; /* Force full viewport height */
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(1.05); /* Slightly less zoom for smaller screens */
+  }
+
+  .heroContent {
+    position: absolute;
+    bottom: 15%; /* Adjust positioning for smaller screens */
+    left: 5%;
+    right: 5%;
+    max-width: none; /* Remove max-width constraint */
+    padding: 1rem;
+    z-index: 3;
+  }
+
+  .heroContent h1 {
+    font-size: 2.5rem; /* Smaller heading for tablets */
+    margin-bottom: 0.5rem;
+  }
+
+  .heroContent p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .exploreButton {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  /* Fix for slick slider container */
+  .heroSection .slick-slider,
+  .heroSection .slick-list,
+  .heroSection .slick-track {
+    height: 100vh !important;
+  }
+
+  .heroSection .slick-slide > div {
+    height: 100vh !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    height: 100vh !important;
+    margin-top: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .heroSlide {
+    height: 100vh !important;
+    position: relative;
+  }
+
+  .heroImage {
+    width: 100% !important;
+    height: 100vh !important;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(1.02); /* Even less zoom for mobile */
+  }
+
+  .heroContent {
+    position: absolute;
+    bottom: 15%;
+    left: 4%;
+    right: 4%;
+    padding: 0.8rem;
+    z-index: 3;
+  }
+
+  .heroContent h1 {
+    font-size: 2rem; /* Mobile heading size */
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .heroContent p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .exploreButton {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+    border-radius: 25px;
+  }
+
+  /* Fix for slick slider container on mobile */
+  .heroSection .slick-slider,
+  .heroSection .slick-list,
+  .heroSection .slick-track {
+    height: 100vh !important;
+  }
+
+  .heroSection .slick-slide > div {
+    height: 100vh !important;
+  }
+
+  .heroSection .slick-slide {
+    height: 100vh !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroContent {
+    bottom: 12%;
+    left: 3%;
+    right: 3%;
+    padding: 0.5rem;
+  }
+
+  .heroContent h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .heroContent p {
+    font-size: 0.85rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .exploreButton {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .buttonIcon {
+    margin-right: 6px;
+  }
+}
+
+/* Ensure the gallery section starts right after hero without gaps */
+@media (max-width: 1024px) {
+  .gallerySection {
+    margin-top: 0;
+    padding-top: 3rem; /* Consistent spacing */
+  }
+}
+
+@media (max-width: 768px) {
+  .gallerySection {
+    margin-top: 0;
+    padding-top: 2.5rem;
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+}
+
+/* Fix any potential spacing issues with the main container */
+@media (max-width: 1024px) {
+  .main {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .container {
+    min-height: 100vh;
+  }
 }
