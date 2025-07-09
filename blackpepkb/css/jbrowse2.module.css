@@ -1,0 +1,93 @@
+/* Page container to center everything */
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Heading Style */
+.heading {
+  margin-bottom: 15px;
+  color: #065551;
+  font-size: 36px;
+  margin-top: 6rem;
+  margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+}
+
+/* Subheading Style */
+.subHeading {
+  text-align: center;
+  color: #4a5352;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  letter-spacing: 0.01em;
+  opacity: 0.9;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+/* Description under the heading */
+.description {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 40px;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Loading Container for Bar Animation */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  background-color: #f9f9f9;
+}
+
+/* Individual Bar Style */
+.bar {
+  width: 10px;
+  height: 30px;
+  margin: 0 5px;
+  background-color: #1b7268;
+  animation: barAnimation 1.2s infinite ease-in-out;
+}
+
+/* Delay for each bar to create a sequential effect */
+.bar:nth-child(1) {
+  animation-delay: 0s;
+}
+.bar:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.bar:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Bar Animation */
+@keyframes barAnimation {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.4);
+  }
+}
