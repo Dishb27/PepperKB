@@ -1,16 +1,17 @@
 .appContainer {
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
-  margin-top: 70px;
+  margin-top: 50px;
   padding: 20px;
-  width: 100%;
 }
 
 /* Hero Section Styles */
 .heroSection {
-  margin-bottom: 30px;
-  align-items: center;
   text-align: center;
+  margin-bottom: 30px;
+  margin-top: 0px;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .heroContent {
@@ -54,6 +55,59 @@
   font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 }
 
+.appIcon {
+  margin-right: 15px;
+  font-size: 2.5rem;
+}
+
+/* Mobile Notice Styles */
+.mobileNotice {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.noticeText {
+  color: #495057;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.noticeText i {
+  color: #065551;
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+.openExternalBtn {
+  background: linear-gradient(135deg, #065551 0%, #0a6b66 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(6, 85, 81, 0.2);
+}
+
+.openExternalBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(6, 85, 81, 0.3);
+  background: linear-gradient(135deg, #0a6b66 0%, #065551 100%);
+}
+
+.openExternalBtn i {
+  margin-right: 8px;
+}
+
 .heroSubtitle {
   color: #34495e;
   font-size: 1rem;
@@ -87,34 +141,61 @@
 
 /* Content Container Styles */
 .contentContainer {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
   margin-bottom: 30px;
   width: 100%;
 }
 
 .card {
-  border-radius: 10px;
-  padding: 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .iframeContainer {
   position: relative;
   width: 100%;
+  padding-bottom: 75%; /* 4:3 aspect ratio */
   height: 0;
-  padding-bottom: 75%;
   overflow: hidden;
 }
 
-/* Improved iframe styling */
-.responsiveIframe {
+.iframeContainer iframe {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   border: none;
+}
+
+/* Mobile Alternative */
+.mobileAlternative {
+  padding: 15px;
+  text-align: center;
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+}
+
+.alternativeText {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.linkButton {
+  background: none;
+  border: none;
+  color: #065551;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-left: 5px;
+  padding: 0;
+}
+
+.linkButton:hover {
+  color: #0a6b66;
 }
 
 /* Loading and Error Overlay Styles */
@@ -135,13 +216,18 @@
 }
 
 .spinner {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #1d7a84;
-  border-radius: 50%;
   width: 50px;
   height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #1f8077;
+  border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-bottom: 15px;
+}
+
+.loadingText {
+  margin-top: 15px;
+  color: #2c3e50;
+  font-size: 1rem;
 }
 
 @keyframes spin {
@@ -199,7 +285,54 @@
 }
 
 /* Responsive Adjustments */
+@media (max-width: 1600px) {
+  .appContainer {
+    max-width: 95%;
+    padding: 15px;
+  }
+
+  .heroSection {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .appTitle {
+    font-size: 2.2rem;
+  }
+
+  .appDescription {
+    font-size: 1.1rem;
+  }
+
+  .heroContent {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .heroIllustration {
+    margin-top: 20px;
+  }
+}
+
 @media (max-width: 768px) {
+  .appContainer {
+    padding: 10px;
+  }
+
+  .heroSection {
+    padding: 15px;
+    margin-top: 20px;
+  }
+
+  .appTitle {
+    font-size: 2rem;
+  }
+
+  .appDescription {
+    font-size: 1rem;
+  }
+
   .heroContent {
     flex-direction: column;
     text-align: center;
@@ -210,11 +343,77 @@
   }
 
   .iframeContainer {
-    padding-bottom: 100%;
+    padding-bottom: 100%; /* More square aspect ratio for mobile */
+    min-height: 600px; /* Ensure minimum height */
+  }
+
+  /* Make iframe container more mobile-friendly */
+  .iframeContainer iframe {
+    /* Force iframe to be scrollable on mobile */
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Mobile notice adjustments */
+  .mobileNotice {
+    margin: 15px auto;
+    padding: 15px;
+  }
+
+  .noticeText {
+    font-size: 0.9rem;
+  }
+
+  .openExternalBtn {
+    padding: 10px 20px;
+    font-size: 0.85rem;
   }
 }
 
-/* For larger screens*/
+@media (max-width: 480px) {
+  .appTitle {
+    font-size: 1.8rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .appIcon {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .appDescription {
+    font-size: 0.9rem;
+  }
+
+  .iframeContainer {
+    padding-bottom: 120%; /* Even more height for very small screens */
+    min-height: 500px;
+  }
+
+  /* Force iframe to take full width and be scrollable */
+  .iframeContainer iframe {
+    position: static !important;
+    height: 500px !important;
+    width: 100% !important;
+  }
+
+  .mobileNotice {
+    padding: 12px;
+    margin: 10px auto;
+  }
+
+  .openExternalBtn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+
+  .backLink {
+    font-size: 0.9rem;
+  }
+}
+
+/* For larger screens */
 @media (min-width: 1200px) {
   .iframeContainer {
     padding-bottom: 65%;
