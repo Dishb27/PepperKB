@@ -8,18 +8,6 @@
   overflow: hidden;
 }
 
-.backgroundPattern {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: radial-gradient(#e0e5eb 1px, transparent 1px);
-  background-size: 30px 30px;
-  opacity: 0.3;
-  pointer-events: none;
-}
-
 .contactContainer {
   flex: 1;
   display: flex;
@@ -94,6 +82,7 @@
   margin-bottom: 1.25rem;
   background: linear-gradient(to right, #1c6560, #3d8e89);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: fadeInUp 0.8s ease forwards;
 }
