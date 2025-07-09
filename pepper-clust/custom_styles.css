@@ -1,0 +1,311 @@
+:root {
+  --primary-color: #226b55;
+  --primary-hover: #0a7960;
+  --secondary-color: #2e574a;
+  --border-color: #e2e8f0;
+  --bg-color: #f8fafc;
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --text-color: #334155;
+  --muted-text: #64748b;
+  --sidebar-width: 320px;
+}
+
+/* Base styles */
+body {
+  background-color: var(--bg-color);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Layout */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  margin: 0;
+  max-width: 100%;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background: white;
+  border-right: 1px solid var(--border-color);
+  height: 100vh;
+  position: fixed;
+  overflow-y: auto;
+  padding: 1.75rem;
+  box-shadow: var(--card-shadow);
+  z-index: 10;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  padding: 2rem;
+  max-width: calc(100% - var(--sidebar-width));
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.card-body.p-0 {
+  padding: 0;
+}
+
+h3 {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+}
+
+.btn-outline-secondary {
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.btn-primary.btn-lg, 
+.btn-outline-secondary { 
+  font-size: 1.1rem; 
+  text-transform: none; 
+  letter-spacing: normal; 
+}
+
+.example-link {
+  color: var(--primary-color);
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  text-decoration: none; 
+}
+
+.example-link:hover {
+  color: var(--primary-hover);
+  text-decoration: none; 
+}
+
+/* Form elements */
+.form-control, .selectize-input {
+  border-color: var(--border-color);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(12, 139, 112, 0.15);
+}
+
+/* Status indicators */
+.status-bar {
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+
+.status-progress {
+  height: 100%;
+  width: 0;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.status-text {
+  font-size: 0.9rem;
+  color: var(--muted-text);
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+/* Helper texts */
+.help-text {
+  font-size: 0.85rem;
+  color: var(--muted-text);
+  margin-top: 0.5rem;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--muted-text);
+}
+
+.empty-state i {
+  color: var(--border-color);
+  margin-bottom: 1rem;
+}
+
+.empty-state h4 {
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+/* DataTables */
+.dataTables_wrapper {
+  padding: 1rem;
+}
+
+.modern-table {
+  width: 100% !important;
+}
+
+.modern-table thead th {
+  background-color: var(--bg-color);
+  font-weight: 600;
+  padding: 0.875rem !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  color: var(--primary-color);
+}
+
+.modern-table tbody td {
+  padding: 0.875rem !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.modern-table tr:hover {
+  background-color: rgba(12, 139, 112, 0.05) !important;
+}
+
+/* Plot container - UPDATED WITH SCROLLING */
+.plot-container {
+  min-height: 600px;
+  position: relative;
+  /* Keep plots at full size on all screens */
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Ensure plots maintain minimum width on small screens */
+.plot-container > div {
+  min-width: 1000px; /* Minimum width to prevent label overlap */
+}
+
+/* Custom scrollbar styling for plot containers */
+.plot-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.plot-container::-webkit-scrollbar-track {
+  background: var(--bg-color);
+  border-radius: 4px;
+}
+
+.plot-container::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+.plot-container::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-text);
+}
+
+/* Error message */
+.alert-danger {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border-color: #fecaca;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 992px) {
+  .app-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .main-content {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+  
+  /* Ensure plot containers have horizontal scroll on small screens */
+  .plot-container {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+  
+  /* Force minimum width for plots to prevent label overlap */
+  .plot-container > div,
+  .plot-container .plotly,
+  .plot-container .shiny-plot-output {
+    min-width: 1000px !important;
+    width: 1000px !important;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 576px) {
+  .main-content {
+    padding: 1rem;
+  }
+  
+  .sidebar {
+    padding: 1.25rem;
+  }
+  
+  /* Maintain plot size even on very small screens */
+  .plot-container > div,
+  .plot-container .plotly,
+  .plot-container .shiny-plot-output {
+    min-width: 1000px !important;
+    width: 1000px !important;
+  }
+}
