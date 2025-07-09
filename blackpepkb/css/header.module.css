@@ -343,6 +343,10 @@
     display: none;
   }
 
+  .searchInput {
+    font-size: 12px;
+  }
+
   /* Show mobile search */
   .mobileSearchContainer {
     display: block;
@@ -409,7 +413,7 @@
   }
 
   .dropdownContent.open {
-    max-height: 300px;
+    max-height: 400px;
     opacity: 1;
     visibility: visible;
   }
@@ -426,7 +430,7 @@
   }
 
   .logo img {
-    height: 50px;
+    height: 90px;
   }
 }
 
