@@ -30,3 +30,8 @@
 
 * **User Manual**: Comprehensive guide for navigating and using BlackPepKB.
 * **Support**: Contact page available for assistance and inquiries.
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).  
+See the [LICENSE](LICENSE) file for details.
