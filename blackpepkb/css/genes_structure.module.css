@@ -59,12 +59,12 @@
   color: #d32f2f;
 }
 
-.geneInfoCard {
+/* .geneInfoCard {
   background-color: #f5f5f5;
   padding: 15px;
   border-radius: 8px;
   margin-bottom: 15px;
-}
+} */
 
 .geneId {
   font-size: 1.5rem;
@@ -84,11 +84,28 @@
   color: #333;
 }
 
-.visualizationCard {
+/* .visualizationCard {
   background-color: white;
   padding: 15px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
+} */
+
+.geneInfoCard,
+.visualizationCard {
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  overflow-x: auto;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Ensure content inside can scroll */
+.geneInfoCard > *,
+.visualizationCard > * {
+  min-width: max-content;
 }
 
 /* Default legend styles to apply consistently */
