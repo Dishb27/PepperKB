@@ -64,7 +64,7 @@
 .textarea {
   width: 100%;
   padding: 1rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.6;
   border: 2px solid #e5e7eb;
   border-radius: 12px;
@@ -93,7 +93,8 @@
 .clearBtn,
 .exampleBtn {
   padding: 0.75rem 1.5rem;
-  font-size: 0.9rem;
+  /* font-size: 0.9rem; */
+  font-size: 1.1rem;
   font-weight: 600;
   border: none;
   border-radius: 10px;
