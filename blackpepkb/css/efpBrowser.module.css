@@ -2,23 +2,52 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f4f4f4;
+  margin-top: 60px;
+  background-color: #ffffff;
   padding: 20px;
 }
 
 .iframeWrapper {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   flex-grow: 1;
+}
+
+.appTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #065551;
+  font-size: 36px;
+  margin-top: 2rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+}
+
+.appDescription {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  text-align: center;
+  color: #4a5352;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  letter-spacing: 0.01em;
+  opacity: 0.9;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
 }
 
 .responsiveIframe {
   width: 100%;
   height: 100vh;
   border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .loadingOverlay {
@@ -37,7 +66,7 @@
 
 .spinner {
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
+  border-top: 4px solid #1a6869;
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -51,5 +80,131 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/* Mobile Notice Styles */
+.mobileNotice {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 20px;
+  /*margin: 10px auto;*/
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 500px;
+  text-align: center;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.noticeText {
+  color: #495057;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.noticeText i {
+  color: #065551;
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+.openExternalBtn {
+  background: linear-gradient(135deg, #065551 0%, #0a6b66 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(6, 85, 81, 0.2);
+}
+
+.openExternalBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(6, 85, 81, 0.3);
+  background: linear-gradient(135deg, #0a6b66 0%, #065551 100%);
+}
+
+.openExternalBtn i {
+  margin-right: 8px;
+}
+
+/* Mobile Alternative */
+.mobileAlternative {
+  padding: 15px;
+  text-align: center;
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+}
+
+.alternativeText {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.linkButton {
+  background: none;
+  border: none;
+  color: #065551;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-left: 5px;
+  padding: 0;
+}
+
+.linkButton:hover {
+  color: #0a6b66;
+}
+
+@media (max-width: 768px) {
+  .iframeContainer {
+    min-height: 600px;
+  }
+
+  /* Make iframe container more mobile-friendly */
+  .iframeContainer iframe {
+    /* Force iframe to be scrollable on mobile */
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Mobile notice adjustments */
+  .mobileNotice {
+    margin: 15px auto;
+    padding: 15px;
+  }
+
+  .noticeText {
+    font-size: 0.9rem;
+  }
+
+  .openExternalBtn {
+    padding: 10px 20px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Force iframe to take full width and be scrollable */
+  .iframeContainer iframe {
+    position: static !important;
+    height: 500px !important;
+    width: 100% !important;
+  }
+
+  .mobileNotice {
+    padding: 12px;
+    margin: 10px auto;
+  }
+
+  .openExternalBtn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
   }
 }
