@@ -82,7 +82,8 @@ Base styles and layout .appContainer {
 
 .tabButton {
   padding: 1.25rem 2rem;
-  font-size: 1rem;
+  /* font-size: 1rem; */
+  font-size: 1.2rem;
   font-weight: 600;
   color: #6b7280;
   background: transparent;
@@ -150,7 +151,7 @@ Base styles and layout .appContainer {
   border: 1px solid #065551;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  font-size: 0.875rem;
+  font-size: 1.1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -171,7 +172,8 @@ Base styles and layout .appContainer {
   border-radius: 0.5rem;
   margin-bottom: 1.5rem;
   color: #0e6465;
-  font-size: 0.9rem;
+  /* font-size: 0.9rem; */
+  font-size: 1.1rem;
 }
 
 /* Input styles */
@@ -235,7 +237,8 @@ Base styles and layout .appContainer {
   border: 1px dashed #10b981;
   border-radius: 0.5rem;
   cursor: pointer;
-  font-size: 0.9rem;
+  /* font-size: 0.9rem; */
+  font-size: 1.1rem;
   font-weight: 500;
   margin-bottom: 1.5rem;
   transition: all 0.2s ease;
@@ -258,7 +261,8 @@ Base styles and layout .appContainer {
   color: white;
   border: none;
   border-radius: 0.5rem;
-  font-size: 1rem;
+  /* font-size: 1rem; */
+  font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   display: flex;
@@ -281,7 +285,8 @@ Base styles and layout .appContainer {
   color: #6b7280;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
-  font-size: 1rem;
+  /* font-size: 1rem; */
+  font-size: 1.1rem;
   font-weight: 500;
   cursor: pointer;
   display: flex;
@@ -359,7 +364,7 @@ Base styles and layout .appContainer {
   color: #4b5563;
   border: 1px solid #d1d5db;
   border-radius: 0.5rem;
-  font-size: 0.875rem;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -429,7 +434,8 @@ Base styles and layout .appContainer {
 
 .categoryHeader h4 {
   margin: 0;
-  font-size: 1rem;
+  /* font-size: 1rem; */
+  font-size: 1.1rem;
   font-weight: 600;
   color: #1f2937;
 }
@@ -471,7 +477,8 @@ Base styles and layout .appContainer {
 
 .termName {
   color: #4b5563;
-  font-size: 0.9rem;
+  /* font-size: 0.9rem; */
+  font-size: 1.2em;
 }
 
 /* Category-specific styling */
