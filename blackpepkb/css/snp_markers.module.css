@@ -1,4 +1,4 @@
-/* /*snp_marker.module.css* */
+/* snp_markers.module.css */
 
 /* Background Overlay */
 .backgroundOverlay::before {
@@ -8,9 +8,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #00c6ff, #0072ff); /* Gradient */
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
   z-index: -1;
-  transition: background 0.5s ease-in-out; /* Transition for background gradient */
+  transition: background 0.5s ease-in-out;
 }
 
 /* Main Container */
@@ -24,6 +24,7 @@
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
   z-index: 1;
   transition: transform 0.3s ease-in-out;
+  margin-top: 90px;
 }
 
 .snpContainer:hover {
@@ -35,7 +36,6 @@
   font-size: 36px;
   margin-bottom: 20px;
   color: #2c3e50;
-  /* font-family: "Poppins", sans-serif; */
   text-align: center;
   font-weight: 500;
   letter-spacing: 1.5px;
@@ -132,13 +132,20 @@
 
 .searchBar button:hover {
   background-color: #0c463f;
-  transform: scale(1.05) rotate(2deg);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .searchBar button:active {
   background-color: rgb(20, 93, 78);
-  transform: scale(0.95);
+}
+
+/* Back Button Specific Styling */
+.backButton {
+  background-color: #7f8c8d !important;
+}
+
+.backButton:hover {
+  background-color: #636e72 !important;
 }
 
 /* Error Message */
@@ -148,6 +155,23 @@
   font-weight: 500;
   text-align: center;
   margin-top: 10px;
+}
+
+/* SNP Visualization Section */
+.visualizationSection {
+  margin-top: 40px;
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  overflow-x: auto; /* Enable horizontal scroll for visualization */
+  overflow-y: hidden;
+}
+
+/* Make the visualization container responsive */
+.visualizationSection > div {
+  min-width: 600px; /* Minimum width to prevent crushing */
+  width: 100%;
 }
 
 /* Results Section */
@@ -167,11 +191,22 @@
   margin-bottom: 20px;
 }
 
+/* Table Container for Horizontal Scrolling */
+.tableContainer {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 600px; /* Limit table height and add vertical scroll */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 15px;
+}
+
 /* Results Table */
 .resultsTable {
   width: 100%;
+  min-width: 600px; /* Minimum width to prevent table from being too narrow */
   border-collapse: collapse;
-  margin-top: 15px;
+  background-color: white;
 }
 
 .resultsTable th,
@@ -181,6 +216,7 @@
   text-align: center;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
+  white-space: nowrap; /* Prevent text wrapping in cells */
 }
 
 .resultsTable th {
@@ -188,6 +224,9 @@
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 1px;
+  position: sticky;
+  top: 0; /* Sticky header when scrolling vertically */
+  z-index: 10;
 }
 
 .resultsTable tr:nth-child(even) {
@@ -197,7 +236,6 @@
 
 .resultsTable tr:hover {
   background-color: #d0d0d0;
-  transform: translateX(3px);
 }
 
 /* No Results Message */
@@ -209,47 +247,14 @@
   margin-top: 20px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .snpContainer {
-    padding: 20px;
-    margin: 60px auto;
-  }
-
-  .snpContainer h2 {
-    font-size: 28px;
-  }
-
-  .searchBar {
-    gap: 15px;
-  }
-
-  .chromosomeInputs {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .searchBar button {
-    width: 100%;
-  }
-
-  .resultsSection {
-    padding: 15px;
-  }
-
-  .resultsTable th,
-  .resultsTable td {
-    padding: 10px;
-    font-size: 14px;
-  }
-}
-
+/* Pagination Controls */
 .paginationControls {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 .paginationControls button {
@@ -260,6 +265,7 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  min-width: 80px;
 }
 
 .paginationControls button:hover:not(:disabled) {
@@ -271,12 +277,43 @@
   cursor: not-allowed;
 }
 
+.paginationControls button.activePage {
+  background-color: #2c3e50;
+}
+
+/* Loading Styles */
 .loadingContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  padding: 20px;
+}
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  text-align: center;
+}
+
+.errorContainer button {
+  padding: 12px 24px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.errorContainer button:hover {
+  background-color: #2980b9;
 }
 
 .spinner {
@@ -298,28 +335,189 @@
   }
 }
 
-.paginationControls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 20px;
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .snpContainer {
+    margin: 80px 20px;
+    padding: 30px;
+  }
+
+  .snpContainer h2 {
+    font-size: 32px;
+  }
+
+  .visualizationSection,
+  .resultsSection {
+    padding: 20px;
+  }
 }
 
-.paginationControls button {
-  padding: 8px 12px;
-  background-color: #3498db;
-  color: white;
-  border: none;
+@media (max-width: 768px) {
+  .snpContainer {
+    padding: 20px;
+    margin: 60px 15px;
+  }
+
+  .snpContainer h2 {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+
+  .snpContainer p {
+    font-size: 16px;
+  }
+
+  .searchBar {
+    gap: 15px;
+  }
+
+  .searchBar input[type="text"] {
+    max-width: 100%;
+  }
+
+  .chromosomeInputs {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .chromosomeInputs input {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .searchButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .searchBar button {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  .visualizationSection,
+  .resultsSection {
+    padding: 15px;
+    margin-top: 30px;
+  }
+
+  .resultsSection h3 {
+    font-size: 24px;
+  }
+
+  .tableContainer {
+    max-height: 400px; /* Smaller max height on mobile */
+  }
+
+  .resultsTable {
+    min-width: 500px; /* Smaller minimum width on mobile */
+  }
+
+  .resultsTable th,
+  .resultsTable td {
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+
+  .paginationControls {
+    gap: 10px;
+  }
+
+  .paginationControls button {
+    padding: 6px 12px;
+    font-size: 14px;
+    min-width: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .snpContainer {
+    margin: 40px 10px;
+    padding: 15px;
+    margin-top: 80px;
+  }
+
+  .snpContainer h2 {
+    font-size: 24px;
+  }
+
+  .snpContainer p {
+    font-size: 14px;
+  }
+
+  .visualizationSection,
+  .resultsSection {
+    padding: 12px;
+  }
+
+  .resultsSection h3 {
+    font-size: 20px;
+  }
+
+  .tableContainer {
+    max-height: 300px;
+  }
+
+  .resultsTable {
+    min-width: 400px;
+  }
+
+  .resultsTable th,
+  .resultsTable td {
+    padding: 8px 6px;
+    font-size: 12px;
+  }
+
+  .searchBar button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .paginationControls {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .paginationControls button {
+    width: 100%;
+  }
+}
+
+/* Scroll indicators for better UX */
+.tableContainer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.8), transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tableContainer:hover::after {
+  opacity: 1;
+}
+
+/* Custom scrollbar for webkit browsers */
+.tableContainer::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.tableContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
   border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.paginationControls button:hover {
-  background-color: #2980b9;
+.tableContainer::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
 }
 
-.paginationControls button.activePage {
-  background-color: #2c3e50;
+.tableContainer::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
 }
