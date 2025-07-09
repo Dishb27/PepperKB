@@ -1,0 +1,29 @@
+/*.leaflet-custom-legend {
+  background-color: #f5f5dc; Light cream color 
+  // border: 1px solid black;
+  //padding: 10px;
+  ///border-radius: 5px;
+  //font-size: 12px;
+}
+
+.leaflet-custom-legend div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.leaflet-custom-legend div div {
+  width: 30px;
+  height: 15px;
+  margin-right: 5px;
+}
+*/
+
+/* Add this CSS to your app's www directory or inline */
+.leaflet-custom-legend {
+  background-color: #e8e8e3;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
